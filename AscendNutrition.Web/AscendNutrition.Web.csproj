@@ -17,6 +17,7 @@
 
   <ItemGroup>
 	  	  <ProjectReference Include="..\AscendNutrition.Common\AscendNutrition.Common.csproj" />
+	  	  <ProjectReference Include="..\AscendNutrition.Data\AscendNutrition.Data.csproj" />
 	  	  <ProjectReference Include="..\AscendNutrition.Web.Viemodels\AscendNutrition.Web.ViewModels.csproj" />
 
   </ItemGroup>
