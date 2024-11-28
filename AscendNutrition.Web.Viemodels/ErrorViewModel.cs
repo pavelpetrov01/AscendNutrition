@@ -1,4 +1,4 @@
-namespace AscendNutrition.Web.Models
+namespace AscendNutrition.Web.ViewModels
 {
     public class ErrorViewModel
     {

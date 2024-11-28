@@ -54,7 +54,7 @@ namespace AscendNutrition.Data.Models
         public Size? Size { get; set; }
 
         [Comment("Quantity of servings per container")]
-        public int? Servings { get; set; }
+        public int Servings { get; set; }
 
         [Required]
         [Comment("Available quantity of the product")]

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AscendNutrition.Common\AscendNutrition.Common.csproj" />
+  </ItemGroup>
+
 </Project>

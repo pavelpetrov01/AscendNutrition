@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using AscendNutrition.Web.Models;
+using AscendNutrition.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AscendNutrition.Web.Controllers
