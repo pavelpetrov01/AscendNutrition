@@ -13,23 +13,16 @@ namespace AscendNutrition.Data.Models
 {
     public class Product
     {
-        public Product()
-        {
-            Id = Guid.NewGuid();
-        }
+
 
         [Key]
         [Comment("Unique identifier for the product in the database")]
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         [Required]
         [StringLength(100)]
         [Comment("The name of the product")]
         public string Name { get; set; } = null!;
-
-        [Required]
-        [Comment("Enum for the different products that will be offered")]
-        public Category Category { get; set; }
 
         [Required]
         [StringLength(100)]
@@ -67,5 +60,11 @@ namespace AscendNutrition.Data.Models
         
         [Comment("Enum for the product's flavour")]
         public Flavour? Flavour { get; set; }
+
+        [Comment("Identifier of the category")]
+        public Guid CategoryId { get; set; }
+
+        [ForeignKey(nameof(CategoryId))]
+        public Category Category { get; set; } = null!;
     }
 }

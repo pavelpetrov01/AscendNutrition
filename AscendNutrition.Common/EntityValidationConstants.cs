@@ -27,5 +27,11 @@ namespace AscendNutrition.Common
             public const int CityMinLength = 4;
             public const int CityMaxLength = 75;
         }
+
+        public static class Category
+        {
+            public const int CategoryNameMinLength = 5;
+            public const int CategoryNameMaxLength = 50;
+        }
     }
 }

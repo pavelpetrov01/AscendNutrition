@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using AscendNutrition.Data.Models;
@@ -25,11 +27,12 @@ namespace AscendNutrition.Data
 
         public virtual DbSet<Product> Products { get; set; } = null!;
 
-        
+        public virtual DbSet<Category> Categories { get; set; } = null!;
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(builder);
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }
