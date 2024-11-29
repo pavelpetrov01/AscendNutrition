@@ -15,5 +15,17 @@ namespace AscendNutrition.Common
             public const int ProductNameMinLength = 7;
             public const int ProductNameMaxLength = 50;
         }
+
+        public static class ApplicationUser
+        {
+            public const int FirstNameMinLength = 2;
+            public const int FirstNameMaxLength = 50;
+            public const int LastNameMinLength = 2;
+            public const int LastNameMaxLength = 100;
+            public const int AddressMinLength = 5;
+            public const int AddressMaxLength = 100;
+            public const int CityMinLength = 4;
+            public const int CityMaxLength = 75;
+        }
     }
 }
