@@ -33,5 +33,11 @@ namespace AscendNutrition.Common
             public const int CategoryNameMinLength = 5;
             public const int CategoryNameMaxLength = 50;
         }
+
+        public static class Order
+        {
+            public const double PriceMinValue = 1.00;
+            public const double PriceMaxValue = 5000.00;
+        }
     }
 }

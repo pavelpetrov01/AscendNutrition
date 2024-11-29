@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AscendNutrition.Data.Models.Enums
+namespace AscendNutrition.Data.Models.Enums.Product
 {
     public enum Flavour
     {

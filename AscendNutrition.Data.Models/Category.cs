@@ -27,7 +27,7 @@ namespace AscendNutrition.Data.Models
         public Guid? ParentCategoryId { get; set; }
 
         [ForeignKey(nameof(ParentCategoryId))]
-        public Category ParentCategory { get; set; }
+        public Category? ParentCategory { get; set; }
 
         public ICollection<Category> SubCategories { get; set; } = new List<Category>();
     }

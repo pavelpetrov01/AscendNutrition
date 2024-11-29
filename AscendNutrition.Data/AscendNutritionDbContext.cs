@@ -29,6 +29,8 @@ namespace AscendNutrition.Data
 
         public virtual DbSet<Category> Categories { get; set; } = null!;
 
+        public virtual DbSet<Order> Orders { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

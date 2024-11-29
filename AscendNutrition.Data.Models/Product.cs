@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AscendNutrition.Data.Models.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
 using static AscendNutrition.Common.EntityValidationConstants.Product;
+using AscendNutrition.Data.Models.Enums.Product;
 
 namespace AscendNutrition.Data.Models
 {
