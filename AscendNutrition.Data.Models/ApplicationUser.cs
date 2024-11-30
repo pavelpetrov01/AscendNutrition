@@ -41,5 +41,7 @@ namespace AscendNutrition.Data.Models
         [Required]
         [Comment("The post code for the city")]
         public int PostalCode { get; set; }
+
+        public ICollection<Order> PurchaseHistory { get; set; } = new List<Order>();
     }
 }

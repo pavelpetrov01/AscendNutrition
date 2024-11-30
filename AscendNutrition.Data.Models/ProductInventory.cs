@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace AscendNutrition.Data.Models
         [ForeignKey(nameof(InventoryId))] 
         public Inventory Inventory { get; set; } = null!;
 
+        [Required]
         public int Quantity { get; set; }
     }
 }
