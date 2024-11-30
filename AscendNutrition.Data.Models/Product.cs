@@ -76,5 +76,7 @@ namespace AscendNutrition.Data.Models
         public Promotion Promotion { get; set; }
 
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+
+        public ICollection<Review> Reviews { get; set; } = new List<Review>();
     }
 }

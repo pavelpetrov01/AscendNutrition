@@ -38,6 +38,8 @@ namespace AscendNutrition.Data
         public virtual DbSet<Promotion> Promotions { get; set; } = null!;
 
         public virtual DbSet<OrderItem> OrderItems { get; set; } = null!;
+
+        public virtual DbSet<Review> Reviews { get; set; } = null!;
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

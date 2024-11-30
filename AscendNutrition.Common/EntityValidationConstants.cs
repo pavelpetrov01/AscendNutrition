@@ -57,5 +57,11 @@ namespace AscendNutrition.Common
             public const double PriceMinValue = 1.00;
             public const double PriceMaxValue = 3000.00;
         }
+
+        public static class Review
+        {
+            public const int CommentMinLength = 2;
+            public const int CommentMaxLength = 500;
+        }
     }
 }

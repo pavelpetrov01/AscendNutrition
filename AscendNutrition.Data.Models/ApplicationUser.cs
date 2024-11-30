@@ -43,5 +43,7 @@ namespace AscendNutrition.Data.Models
         public int PostalCode { get; set; }
 
         public ICollection<Order> PurchaseHistory { get; set; } = new List<Order>();
+
+        public ICollection<Review> Reviews { get; set; } = new List<Review>();
     }
 }
