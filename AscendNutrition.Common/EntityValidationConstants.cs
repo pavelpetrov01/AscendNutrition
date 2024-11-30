@@ -51,5 +51,11 @@ namespace AscendNutrition.Common
             public const int PromotionNameMinLength = 10;
             public const int PromotionNameMaxLength = 100;
         }
+
+        public static class OrderItem
+        {
+            public const double PriceMinValue = 1.00;
+            public const double PriceMaxValue = 3000.00;
+        }
     }
 }

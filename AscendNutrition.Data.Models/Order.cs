@@ -40,5 +40,7 @@ namespace AscendNutrition.Data.Models
         [Required]
         [Comment("Shows the way in which the order will be paid")]
         public PaymentMethod PaymentMethod { get; set; }
+
+        public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }
 }

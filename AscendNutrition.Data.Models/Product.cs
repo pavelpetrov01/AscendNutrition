@@ -74,5 +74,7 @@ namespace AscendNutrition.Data.Models
 
         [ForeignKey(nameof(PromotionId))]
         public Promotion Promotion { get; set; }
+
+        public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }
 }
