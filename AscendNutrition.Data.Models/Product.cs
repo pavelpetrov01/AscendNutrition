@@ -66,5 +66,7 @@ namespace AscendNutrition.Data.Models
 
         [ForeignKey(nameof(CategoryId))]
         public Category Category { get; set; } = null!;
+
+        private ICollection<ProductInventory> ProductInventories { get; set; } = new List<ProductInventory>();
     }
 }

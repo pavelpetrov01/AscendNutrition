@@ -39,5 +39,11 @@ namespace AscendNutrition.Common
             public const double PriceMinValue = 1.00;
             public const double PriceMaxValue = 5000.00;
         }
+
+        public static class Inventory
+        {
+            public const int CityMinLength = 4;
+            public const int CityMaxLength = 75;
+        }
     }
 }

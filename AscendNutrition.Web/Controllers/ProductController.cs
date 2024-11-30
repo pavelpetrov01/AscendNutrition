@@ -1,6 +1,7 @@
 ﻿using AscendNutrition.Data;
 using AscendNutrition.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AscendNutrition.Web.Controllers
 {
@@ -21,6 +22,7 @@ namespace AscendNutrition.Web.Controllers
                         Price = p.Price,
                         Servings = p.Servings
                     })
+                .AsNoTracking()
                 .ToList();
             return View(model);
         }

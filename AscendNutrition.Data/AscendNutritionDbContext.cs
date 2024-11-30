@@ -31,10 +31,15 @@ namespace AscendNutrition.Data
 
         public virtual DbSet<Order> Orders { get; set; } = null!;
 
+        public virtual DbSet<Inventory> Inventories { get; set; } = null!;
+
+        public virtual DbSet<ProductInventory> ProductInventories { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            
         }
     }
 }
