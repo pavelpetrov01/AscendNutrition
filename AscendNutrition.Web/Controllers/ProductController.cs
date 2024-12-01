@@ -1,4 +1,6 @@
 ﻿using AscendNutrition.Data;
+using AscendNutrition.Data.Models;
+using AscendNutrition.Data.Repository.Interfaces;
 using AscendNutrition.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,10 +10,11 @@ namespace AscendNutrition.Web.Controllers
     public class ProductController : Controller
     {
         private readonly AscendNutritionDbContext _context;
-
-        public ProductController(AscendNutritionDbContext context)
+        private IRepository<Product, Guid> _productRepository;
+        public ProductController(AscendNutritionDbContext context, IRepository<Product,Guid> productRepository)
         {
             _context = context;
+            _productRepository = productRepository;
         }
         public IActionResult Index()
         {

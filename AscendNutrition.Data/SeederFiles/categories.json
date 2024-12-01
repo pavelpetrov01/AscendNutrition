@@ -1,0 +1,42 @@
+[
+  {
+    "Id": "f7b59f52-b9e3-4d7e-ae9b-9071d17a6491",
+    "Name": "Protein Powder",
+    "ParentCategoryId": null
+  },
+  {
+    "Id": "91cb01ef-7d82-44a9-8a58-2bb07d3ed712",
+    "Name": "Vitamins",
+    "ParentCategoryId": null
+  },
+  {
+    "Id": "c3c5b715-3d74-4af0-81e3-0d6b5c7e8b5a",
+    "Name": "Vegan Protein",
+    "ParentCategoryId": "f7b59f52-b9e3-4d7e-ae9b-9071d17a6491"
+  },
+  {
+    "Id": "f3d32764-e0ef-4f56-b9bb-902d1ac6b76f",
+    "Name": "Casein Protein",
+    "ParentCategoryId": "f7b59f52-b9e3-4d7e-ae9b-9071d17a6491"
+  },
+  {
+    "Id": "ed752a96-cafa-4aa3-adc7-a491b5caa2df",
+    "Name": "Pre-workout",
+    "ParentCategoryId": null
+  },
+  {
+    "Id": "2d15e952-dcab-477d-a3d2-1798a500d07b",
+    "Name": "Creatine",
+    "ParentCategoryId": null
+  },
+  {
+    "Id": "1383fe7e-0601-4ed2-8048-f6ea2db24346",
+    "Name": "Beta-alanine",
+    "ParentCategoryId": "ed752a96-cafa-4aa3-adc7-a491b5caa2df"
+  },
+  {
+    "Id": "017dc22c-7960-4ef9-88db-2fa6c68399f8",
+    "Name": "Citruline-Malate",
+    "ParentCategoryId": "ed752a96-cafa-4aa3-adc7-a491b5caa2df"
+  }
+]

@@ -14,11 +14,16 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AscendNutrition.Common\AscendNutrition.Common.csproj" />
     <ProjectReference Include="..\AscendNutrition.Data.Models\AscendNutrition.Data.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="SeederFiles\" />
   </ItemGroup>
 
 </Project>

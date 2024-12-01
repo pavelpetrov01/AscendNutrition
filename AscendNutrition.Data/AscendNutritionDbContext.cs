@@ -9,11 +9,13 @@ using AscendNutrition.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace AscendNutrition.Data
 {
     public class AscendNutritionDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
+      
         public AscendNutritionDbContext()
         {
             
@@ -44,7 +46,20 @@ namespace AscendNutrition.Data
         {
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-            
+            builder.Entity<Category>().HasData(SeedCategories());
+        }
+
+       
+        public List<Category> SeedCategories()
+        {
+            var entities = new List<Category>();
+            using (StreamReader streamReader = new StreamReader(@"../AscendNutrition.Data/SeederFiles/categories.json"))
+            {
+                string json = streamReader.ReadToEnd();
+                entities = JsonConvert.DeserializeObject<List<Category>>(json);
+            }
+
+            return entities;
         }
     }
 }
