@@ -4,6 +4,7 @@ using AscendNutrition.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AscendNutrition.Data.Migrations
 {
     [DbContext(typeof(AscendNutritionDbContext))]
-    partial class AscendNutritionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241201214939_InventoryDataAdded")]
+    partial class InventoryDataAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -138,52 +141,6 @@ namespace AscendNutrition.Data.Migrations
                     b.HasIndex("ParentCategoryId");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("f7b59f52-b9e3-4d7e-ae9b-9071d17a6491"),
-                            Name = "Protein Powder"
-                        },
-                        new
-                        {
-                            Id = new Guid("91cb01ef-7d82-44a9-8a58-2bb07d3ed712"),
-                            Name = "Vitamins"
-                        },
-                        new
-                        {
-                            Id = new Guid("c3c5b715-3d74-4af0-81e3-0d6b5c7e8b5a"),
-                            Name = "Vegan Protein",
-                            ParentCategoryId = new Guid("f7b59f52-b9e3-4d7e-ae9b-9071d17a6491")
-                        },
-                        new
-                        {
-                            Id = new Guid("f3d32764-e0ef-4f56-b9bb-902d1ac6b76f"),
-                            Name = "Casein Protein",
-                            ParentCategoryId = new Guid("f7b59f52-b9e3-4d7e-ae9b-9071d17a6491")
-                        },
-                        new
-                        {
-                            Id = new Guid("ed752a96-cafa-4aa3-adc7-a491b5caa2df"),
-                            Name = "Pre-workout"
-                        },
-                        new
-                        {
-                            Id = new Guid("2d15e952-dcab-477d-a3d2-1798a500d07b"),
-                            Name = "Creatine"
-                        },
-                        new
-                        {
-                            Id = new Guid("1383fe7e-0601-4ed2-8048-f6ea2db24346"),
-                            Name = "Beta-alanine",
-                            ParentCategoryId = new Guid("ed752a96-cafa-4aa3-adc7-a491b5caa2df")
-                        },
-                        new
-                        {
-                            Id = new Guid("017dc22c-7960-4ef9-88db-2fa6c68399f8"),
-                            Name = "Citruline-Malate",
-                            ParentCategoryId = new Guid("ed752a96-cafa-4aa3-adc7-a491b5caa2df")
-                        });
                 });
 
             modelBuilder.Entity("AscendNutrition.Data.Models.Inventory", b =>

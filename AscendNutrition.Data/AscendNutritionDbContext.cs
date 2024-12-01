@@ -46,17 +46,18 @@ namespace AscendNutrition.Data
         {
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-            builder.Entity<Category>().HasData(SeedCategories());
+            builder.Entity<Category>().HasData(SeedData<Category>(@"../AscendNutrition.Data/SeederFiles/categories.json"));
+            builder.Entity<Inventory>().HasData(SeedData<Inventory>(@"../AscendNutrition.Data/SeederFiles/inventories.json"));
         }
 
        
-        public List<Category> SeedCategories()
+        public List<T> SeedData<T>(string filePath)
         {
-            var entities = new List<Category>();
-            using (StreamReader streamReader = new StreamReader(@"../AscendNutrition.Data/SeederFiles/categories.json"))
+            var entities = new List<T>();
+            using (StreamReader streamReader = new StreamReader(filePath))
             {
                 string json = streamReader.ReadToEnd();
-                entities = JsonConvert.DeserializeObject<List<Category>>(json);
+                entities = JsonConvert.DeserializeObject<List<T>>(json);
             }
 
             return entities;
