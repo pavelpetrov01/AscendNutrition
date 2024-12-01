@@ -13,6 +13,5 @@ namespace AscendNutrition.Data.Models.Enums.Review
         Neutral = 2,
         Satisfied = 3,
         VerySatisfied = 4,
-
     }
 }

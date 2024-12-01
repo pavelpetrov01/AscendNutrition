@@ -1,8 +1,10 @@
 using AscendNutrition.Data;
 using AscendNutrition.Data.Models;
+using AscendNutrition.Data.Repository;
+using AscendNutrition.Data.Repository.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
+using AscendNutrition.Web.Infrastructure.Extensions;
 namespace AscendNutrition.Web
 {
     public class Program
@@ -26,6 +28,7 @@ namespace AscendNutrition.Web
                 })
                 .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<AscendNutritionDbContext>();
+            builder.Services.RegisterAllRepositories();
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();

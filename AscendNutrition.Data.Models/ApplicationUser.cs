@@ -36,7 +36,7 @@ namespace AscendNutrition.Data.Models
         [Required]
         [StringLength(CityMaxLength)]
         [Comment("The city of the user")]
-        public string City { get; set; }
+        public string City { get; set; } = null!;
 
         [Required]
         [Comment("The post code for the city")]
