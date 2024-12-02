@@ -9,6 +9,8 @@ namespace AscendNutrition.Web.ViewModels
 {
     public class IndexViewModel
     {
+
+        public Guid Id { get; set; }
         [Required]
         [StringLength(ProductNameMaxLength),MinLength(ProductNameMinLength)]
         public string Name { get; set; } = null!;

@@ -38,9 +38,8 @@ namespace AscendNutrition.Data.Models
         [Comment("The city of the user")]
         public string City { get; set; } = null!;
 
-        [Required]
         [Comment("The post code for the city")]
-        public int PostalCode { get; set; }
+        public int? PostalCode { get; set; }
 
         public ICollection<Order> PurchaseHistory { get; set; } = new List<Order>();
 

@@ -81,7 +81,7 @@ namespace AscendNutrition.Data.Repository
             }
 
             _set.Remove(entity);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return true;
         }
 

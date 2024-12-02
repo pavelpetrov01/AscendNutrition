@@ -21,6 +21,7 @@ namespace AscendNutrition.Web.Controllers
             var model = _context.Products.Select(p =>
                     new IndexViewModel()
                     {
+                        Id = p.Id,
                         Name = p.Name,
                         Price = p.Price,
                         Servings = p.Servings,
@@ -29,6 +30,46 @@ namespace AscendNutrition.Web.Controllers
                 .AsNoTracking()
                 .ToList();
             return View(model);
+        }
+
+        public IActionResult Details(string? id)
+        {
+            Guid productGuid = Guid.Empty;
+            IsGuidValid(id, ref productGuid);
+
+
+
+            return View();
+
+        }
+
+        public IActionResult Buy(string? id)
+        {
+            Guid productGuid = Guid.Empty;
+            IsGuidValid(id, ref productGuid);
+
+
+
+            return View();
+
+        }
+
+        protected bool IsGuidValid(string? id, ref Guid parsedGuid)
+        {
+            // Non-existing parameter in the URL
+            if (String.IsNullOrWhiteSpace(id))
+            {
+                return false;
+            }
+
+            // Invalid parameter in the URL
+            bool isGuidValid = Guid.TryParse(id, out parsedGuid);
+            if (!isGuidValid)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

@@ -19,6 +19,11 @@
                         <strong>Name:</strong> @product.Name <br />
                         <strong>Price:</strong> @product.Price.ToString("C") <br />
                         <strong>Servings:</strong> @product.Servings <br />
+                        <a asp-action="Details" asp-route-id="@product.Id" class="btn btn-primary">Details</a>
+                        @if (User?.Identity?.IsAuthenticated == true)
+                        {
+                            <a asp-action="Buy" asp-route-id="@product.Id" class="btn btn-primary">Buy</a>
+                        }
                     </div>
                     <div class="product-image" style="text-align: center;">
                         <img src="@product.ImageUrl" alt="@product.Name" class="img-fluid" style="max-width: 100px; height: 100px; object-fit: cover" />
