@@ -50,7 +50,7 @@ namespace AscendNutrition.Data
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             builder.Entity<Category>().HasData(SeedData<Category>(@"../AscendNutrition.Data/SeederFiles/categories.json"));
             builder.Entity<Inventory>().HasData(SeedData<Inventory>(@"../AscendNutrition.Data/SeederFiles/inventories.json"));
-            //builder.Entity<Product>().HasData(SeedData<Product>(@"../AscendNutrition.Data/SeederFiles/products.json"));
+            builder.Entity<Product>().HasData(SeedData<Product>(@"../AscendNutrition.Data/SeederFiles/products.json"));
         }
 
        
