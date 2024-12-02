@@ -23,7 +23,8 @@ namespace AscendNutrition.Web.Controllers
                     {
                         Name = p.Name,
                         Price = p.Price,
-                        Servings = p.Servings
+                        Servings = p.Servings,
+                        ImageUrl = p.ImageUrl,
                     })
                 .AsNoTracking()
                 .ToList();
