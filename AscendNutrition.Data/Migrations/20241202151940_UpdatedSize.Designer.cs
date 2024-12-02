@@ -4,6 +4,7 @@ using AscendNutrition.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AscendNutrition.Data.Migrations
 {
     [DbContext(typeof(AscendNutritionDbContext))]
-    partial class AscendNutritionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241202151940_UpdatedSize")]
+    partial class UpdatedSize
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -319,6 +322,10 @@ namespace AscendNutrition.Data.Migrations
                         .HasColumnType("decimal(18,2)")
                         .HasComment("The price of a single product");
 
+                    b.Property<Guid?>("PromotionId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasComment("Identifier of the promotion");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int")
                         .HasComment("Available quantity of the product");
@@ -339,6 +346,8 @@ namespace AscendNutrition.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
+                    b.HasIndex("PromotionId");
+
                     b.ToTable("Products");
                 });
 
@@ -358,21 +367,6 @@ namespace AscendNutrition.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductInventories");
-                });
-
-            modelBuilder.Entity("AscendNutrition.Data.Models.ProductPromotion", b =>
-                {
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PromotionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ProductId", "PromotionId");
-
-                    b.HasIndex("PromotionId");
-
-                    b.ToTable("ProductPromotions");
                 });
 
             modelBuilder.Entity("AscendNutrition.Data.Models.Promotion", b =>
@@ -623,7 +617,13 @@ namespace AscendNutrition.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("AscendNutrition.Data.Models.Promotion", "Promotion")
+                        .WithMany("ApplicableProducts")
+                        .HasForeignKey("PromotionId");
+
                     b.Navigation("Category");
+
+                    b.Navigation("Promotion");
                 });
 
             modelBuilder.Entity("AscendNutrition.Data.Models.ProductInventory", b =>
@@ -643,25 +643,6 @@ namespace AscendNutrition.Data.Migrations
                     b.Navigation("Inventory");
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("AscendNutrition.Data.Models.ProductPromotion", b =>
-                {
-                    b.HasOne("AscendNutrition.Data.Models.Product", "Product")
-                        .WithMany("ProductPromotions")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AscendNutrition.Data.Models.Promotion", "Promotion")
-                        .WithMany("ProductPromotions")
-                        .HasForeignKey("PromotionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Promotion");
                 });
 
             modelBuilder.Entity("AscendNutrition.Data.Models.Review", b =>
@@ -762,14 +743,12 @@ namespace AscendNutrition.Data.Migrations
 
                     b.Navigation("ProductInventories");
 
-                    b.Navigation("ProductPromotions");
-
                     b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("AscendNutrition.Data.Models.Promotion", b =>
                 {
-                    b.Navigation("ProductPromotions");
+                    b.Navigation("ApplicableProducts");
                 });
 #pragma warning restore 612, 618
         }

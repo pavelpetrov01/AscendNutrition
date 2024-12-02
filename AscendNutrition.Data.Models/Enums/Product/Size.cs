@@ -8,10 +8,11 @@ namespace AscendNutrition.Data.Models.Enums.Product
 {
     public enum Size
     {
-        FiveHundredGrams = 0,
-        OneKg = 1,
-        TwoKg = 2,
-        TwoAndAHalfKg = 3,
+        ThreeHundredGrams = 0,
+        FiveHundredGrams = 1,
+        OneKg = 2,
+        TwoKg = 3,
+        TwoAndAHalfKg = 4,
 
     }
 }

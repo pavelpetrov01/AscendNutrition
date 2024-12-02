@@ -42,12 +42,15 @@ namespace AscendNutrition.Data
         public virtual DbSet<OrderItem> OrderItems { get; set; } = null!;
 
         public virtual DbSet<Review> Reviews { get; set; } = null!;
+
+        public virtual DbSet<ProductPromotion> ProductPromotions { get; set; } = null!;
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             builder.Entity<Category>().HasData(SeedData<Category>(@"../AscendNutrition.Data/SeederFiles/categories.json"));
             builder.Entity<Inventory>().HasData(SeedData<Inventory>(@"../AscendNutrition.Data/SeederFiles/inventories.json"));
+            //builder.Entity<Product>().HasData(SeedData<Product>(@"../AscendNutrition.Data/SeederFiles/products.json"));
         }
 
        

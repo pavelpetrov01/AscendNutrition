@@ -14,6 +14,12 @@ namespace AscendNutrition.Common
             public const double PriceMaxValue = 3000.00;
             public const int ProductNameMinLength = 7;
             public const int ProductNameMaxLength = 50;
+            public const int BrandMinLength = 2;
+            public const int BrandMaxLength = 50;
+            public const int ImageUrlMinLength = 12;
+            public const int ImageUrlMaxLength = 2048;
+            public const int DescriptionMinLength = 10;
+            public const int DescriptionMaxLength = 500;
         }
 
         public static class ApplicationUser

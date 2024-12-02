@@ -20,15 +20,16 @@ namespace AscendNutrition.Data.Models
         public Guid Id { get; set; } = Guid.NewGuid();
 
         [Required]
-        [StringLength(100)]
+        [StringLength(ProductNameMaxLength)]
         [Comment("The name of the product")]
         public string Name { get; set; } = null!;
 
         [Required]
-        [StringLength(100)]
+        [StringLength(BrandMaxLength)]
         [Comment("The name of the product's brand")]
         public string Brand { get; set; } = null!;
 
+        [StringLength(ImageUrlMaxLength)]
         [Comment("An url to the image illustrating the product")]
         public string? ImageUrl { get; set; }
 
@@ -53,7 +54,7 @@ namespace AscendNutrition.Data.Models
         [Comment("Available quantity of the product")]
         public int Quantity { get; set; }
 
-        [StringLength(500)]
+        [StringLength(DescriptionMaxLength)]
         [Comment("A description about the product")]
         public string? Description { get; set; }
 
@@ -69,11 +70,7 @@ namespace AscendNutrition.Data.Models
 
         public ICollection<ProductInventory> ProductInventories { get; set; } = new List<ProductInventory>();
 
-        [Comment("Identifier of the promotion")]
-        public Guid? PromotionId { get; set; }
-
-        [ForeignKey(nameof(PromotionId))]
-        public Promotion Promotion { get; set; }
+        public ICollection<ProductPromotion> ProductPromotions { get; set; } = new List<ProductPromotion>();
 
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 

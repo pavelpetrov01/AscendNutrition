@@ -20,7 +20,7 @@ namespace AscendNutrition.Data.Models
         public Guid ProductId { get; set; }
 
         [ForeignKey(nameof(ProductId))] 
-        public Product Product { get; set; } = null;
+        public Product Product { get; set; } = null!;
 
         [Required]
         [Comment("The quantity of the product")]

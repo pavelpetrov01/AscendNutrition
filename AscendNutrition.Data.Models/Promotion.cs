@@ -33,6 +33,6 @@ namespace AscendNutrition.Data.Models
         [Comment("The end of the promotion")]
         public DateTime EndDate { get; set; }
 
-        public ICollection<Product> ApplicableProducts { get; set; } = new List<Product>();
+        public ICollection<ProductPromotion> ProductPromotions { get; set; } = new List<ProductPromotion>();
     }
 }
