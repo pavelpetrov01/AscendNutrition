@@ -4,17 +4,21 @@ using AscendNutrition.Data.Repository.Interfaces;
 using AscendNutrition.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using static AscendNutrition.Common.EntityValidationConstants;
 
 namespace AscendNutrition.Web.Controllers
 {
     public class ProductController : Controller
     {
         private readonly AscendNutritionDbContext _context;
-        private IRepository<Product, Guid> _productRepository;
-        public ProductController(AscendNutritionDbContext context, IRepository<Product,Guid> productRepository)
+        private IRepository<Data.Models.Product, Guid> _productRepository;
+        
+        public ProductController(AscendNutritionDbContext context, IRepository<Data.Models.Product,Guid> productRepository)
         {
             _context = context;
             _productRepository = productRepository;
+            
         }
         public IActionResult Index()
         {
@@ -32,11 +36,17 @@ namespace AscendNutrition.Web.Controllers
             return View(model);
         }
 
-        public IActionResult GetAllProteins()
+        public IActionResult ProductsByCategory(string category)
         {
-            var model = _context.Products
-                .Where(p=> p.Category.Name == "Protein Powder")
-                .Select(p =>
+            if (String.IsNullOrEmpty(category))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            var parentCategory = _context.Categories
+                .FirstOrDefault(c => c.Name.ToLower() == category.ToLower());
+            var model = _context.Products.Where(p => p.Category.Name == category||
+                        p.Category.ParentCategoryId == parentCategory.Id)
+                .Include(p => p.Category.ParentCategory).Select(p =>
                     new IndexViewModel()
                     {
                         Id = p.Id,
@@ -46,8 +56,19 @@ namespace AscendNutrition.Web.Controllers
                         ImageUrl = p.ImageUrl,
                     })
                 .AsNoTracking()
-                .ToList();
+            .ToList();
+            if (category != "Vitamins")
+            {
+                ViewData["Title"] = $"All {category}s";
+                
+            }
+            else
+            {
+                ViewData["Title"] = $"All {category}";
+            }
+            
             return View(model);
+            
         }
 
         public IActionResult Details(string? id)
