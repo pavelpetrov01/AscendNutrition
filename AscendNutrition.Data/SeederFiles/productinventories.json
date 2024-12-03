@@ -1,0 +1,107 @@
+[
+  {
+    "ProductId": "a4fab9f7-f65f-48bc-8c0e-0ebbdf042a26",
+    "InventoryId": "e098a6b8-60d9-4f30-91d6-85eab6e5274b",
+    "Quantity": 200
+  },
+  {
+    "ProductId": "a4fab9f7-f65f-48bc-8c0e-0ebbdf042a26",
+    "InventoryId": "1b48c8b4-b7f6-4354-9463-7cb9e084ae9c",
+    "Quantity": 300
+  },
+  {
+    "ProductId": "a4fab9f7-f65f-48bc-8c0e-0ebbdf042a26",
+    "InventoryId": "c68295f6-b5bb-4224-8516-877b57858f58",
+    "Quantity": 200
+  },
+  {
+    "ProductId": "ff3bbd2a-05a0-44eb-ab2b-1408b1fdd55b",
+    "InventoryId": "e098a6b8-60d9-4f30-91d6-85eab6e5274b",
+    "Quantity": 300
+  },
+  {
+    "ProductId": "ff3bbd2a-05a0-44eb-ab2b-1408b1fdd55b",
+    "InventoryId": "1b48c8b4-b7f6-4354-9463-7cb9e084ae9c",
+    "Quantity": 700
+  },
+  {
+    "ProductId": "abf4b934-54e0-4d1d-a049-9d5b349f2215",
+    "InventoryId": "c68295f6-b5bb-4224-8516-877b57858f58",
+    "Quantity": 50
+  },
+  {
+    "ProductId": "abf4b934-54e0-4d1d-a049-9d5b349f2215",
+    "InventoryId": "1b48c8b4-b7f6-4354-9463-7cb9e084ae9c",
+    "Quantity": 200
+  },
+  {
+    "ProductId": "06c95860-1d05-452a-a15a-a18c3e104d3b",
+    "InventoryId": "1b48c8b4-b7f6-4354-9463-7cb9e084ae9c",
+    "Quantity": 560
+  },
+  {
+    "ProductId": "06c95860-1d05-452a-a15a-a18c3e104d3b",
+    "InventoryId": "e098a6b8-60d9-4f30-91d6-85eab6e5274b",
+    "Quantity": 210
+  },
+  {
+    "ProductId": "06c95860-1d05-452a-a15a-a18c3e104d3b",
+    "InventoryId": "c68295f6-b5bb-4224-8516-877b57858f58",
+    "Quantity": 280
+  },
+  {
+    "ProductId": "c595c905-76ae-4ab2-950d-b54c6e3ac6f2",
+    "InventoryId": "1b48c8b4-b7f6-4354-9463-7cb9e084ae9c",
+    "Quantity": 120
+  },
+  {
+    "ProductId": "706f88ae-c72d-43e6-b5da-ba1db33f2401",
+    "InventoryId": "c68295f6-b5bb-4224-8516-877b57858f58",
+    "Quantity": 60
+  },
+  {
+    "ProductId": "706f88ae-c72d-43e6-b5da-ba1db33f2401",
+    "InventoryId": "e098a6b8-60d9-4f30-91d6-85eab6e5274b",
+    "Quantity": 60
+  },
+  {
+    "ProductId": "77a25d79-6b37-4e35-8601-bae2a5a68a1e",
+    "InventoryId": "c68295f6-b5bb-4224-8516-877b57858f58",
+    "Quantity": 40
+  },
+  {
+    "ProductId": "77a25d79-6b37-4e35-8601-bae2a5a68a1e",
+    "InventoryId": "e098a6b8-60d9-4f30-91d6-85eab6e5274b",
+    "Quantity": 60
+  },
+  {
+    "ProductId": "77a25d79-6b37-4e35-8601-bae2a5a68a1e",
+    "InventoryId": "1b48c8b4-b7f6-4354-9463-7cb9e084ae9c",
+    "Quantity": 100
+  },
+  {
+    "ProductId": "8e3e7e16-1b45-4f0c-a9f4-c48d5c49f9a9",
+    "InventoryId": "1b48c8b4-b7f6-4354-9463-7cb9e084ae9c",
+    "Quantity": 200
+  },
+  {
+    "ProductId": "8e3e7e16-1b45-4f0c-a9f4-c48d5c49f9a9",
+    "InventoryId": "e098a6b8-60d9-4f30-91d6-85eab6e5274b",
+    "Quantity": 300
+  },
+  {
+    "ProductId": "7f7a9d00-d6e2-4ff3-a608-f3dfc0e329ea",
+    "InventoryId": "c68295f6-b5bb-4224-8516-877b57858f58",
+    "Quantity": 600
+  },
+  {
+    "ProductId": "7f7a9d00-d6e2-4ff3-a608-f3dfc0e329ea",
+    "InventoryId": "e098a6b8-60d9-4f30-91d6-85eab6e5274b",
+    "Quantity": 400
+  },
+  {
+    "ProductId": "fc0ec8a8-c0eb-433f-8a2b-fe5ee65e8457",
+    "InventoryId": "1b48c8b4-b7f6-4354-9463-7cb9e084ae9c",
+    "Quantity": 120
+  }
+]
