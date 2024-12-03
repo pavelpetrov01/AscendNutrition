@@ -1,0 +1,30 @@
+[
+  {
+    "Id": "4973a378-28de-4638-a3cc-2332d50f3d90",
+    "Name": "Black Friday Sale",
+    "DiscountPercentage": 40,
+    "StartDate": "2024-11-29",
+    "EndDate": "2024-12-01"
+  },
+  {
+    "Id": "293a93e7-9c5a-4b47-bf73-e7ab127207c1",
+    "Name": "Christmas Sale",
+    "DiscountPercentage": 30,
+    "StartDate": "2024-12-01",
+    "EndDate": "2024-12-23"
+  },
+  {
+    "Id": "4b345868-a517-4219-819b-70c4b02b002c",
+    "Name": "Summer Shredding",
+    "DiscountPercentage": 20,
+    "StartDate": "2024-06-01",
+    "EndDate": "2024-06-10"
+  },
+  {
+    "Id": "33a5cbce-b411-4e18-8c31-df92664f12a8",
+    "Name": "AscendNutrition Anniversary",
+    "DiscountPercentage": 15,
+    "StartDate": "2024-11-15",
+    "EndDate": "2024-11-16"
+  }
+]

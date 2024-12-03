@@ -32,6 +32,24 @@ namespace AscendNutrition.Web.Controllers
             return View(model);
         }
 
+        public IActionResult GetAllProteins()
+        {
+            var model = _context.Products
+                .Where(p=> p.Category.Name == "Protein Powder")
+                .Select(p =>
+                    new IndexViewModel()
+                    {
+                        Id = p.Id,
+                        Name = p.Name,
+                        Price = p.Price,
+                        Servings = p.Servings,
+                        ImageUrl = p.ImageUrl,
+                    })
+                .AsNoTracking()
+                .ToList();
+            return View(model);
+        }
+
         public IActionResult Details(string? id)
         {
             Guid productGuid = Guid.Empty;

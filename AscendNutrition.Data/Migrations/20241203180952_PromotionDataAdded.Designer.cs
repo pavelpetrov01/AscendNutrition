@@ -4,6 +4,7 @@ using AscendNutrition.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AscendNutrition.Data.Migrations
 {
     [DbContext(typeof(AscendNutritionDbContext))]
-    partial class AscendNutritionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241203180952_PromotionDataAdded")]
+    partial class PromotionDataAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -558,7 +561,7 @@ namespace AscendNutrition.Data.Migrations
                         {
                             Id = new Guid("4973a378-28de-4638-a3cc-2332d50f3d90"),
                             DiscountPercentage = 40,
-                            EndDate = new DateTime(2024, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndDate = new DateTime(2024, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Black Friday Sale",
                             StartDate = new DateTime(2024, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -582,8 +585,8 @@ namespace AscendNutrition.Data.Migrations
                         {
                             Id = new Guid("33a5cbce-b411-4e18-8c31-df92664f12a8"),
                             DiscountPercentage = 15,
-                            EndDate = new DateTime(2024, 11, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "AscendNutrition Anniversary",
+                            EndDate = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Ascend Nutrition Anniversary",
                             StartDate = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });

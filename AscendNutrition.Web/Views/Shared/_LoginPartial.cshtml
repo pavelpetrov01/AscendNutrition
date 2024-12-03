@@ -2,13 +2,11 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
-@{
-    var user = UserManager.GetUserAsync(User).Result;
-    var firstName = user.FirstName;
-}
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
+    var user = UserManager.GetUserAsync(User).Result;
+    var firstName = user.FirstName;
     <li class="nav-item">
         <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, @firstName!</a>
     </li>
