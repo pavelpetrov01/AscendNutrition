@@ -1,0 +1,102 @@
+[
+  {
+    "ProductId": "77a25d79-6b37-4e35-8601-bae2a5a68a1e",
+    "PromotionId": "4973a378-28de-4638-a3cc-2332d50f3d90"
+  },
+  {
+    "ProductId": "c595c905-76ae-4ab2-950d-b54c6e3ac6f2",
+    "PromotionId": "4973a378-28de-4638-a3cc-2332d50f3d90"
+  },
+  {
+    "ProductId": "8e3e7e16-1b45-4f0c-a9f4-c48d5c49f9a9",
+    "PromotionId": "4973a378-28de-4638-a3cc-2332d50f3d90"
+  },
+  {
+    "ProductId": "7f7a9d00-d6e2-4ff3-a608-f3dfc0e329ea",
+    "PromotionId": "4973a378-28de-4638-a3cc-2332d50f3d90"
+  },
+  {
+    "ProductId": "a4fab9f7-f65f-48bc-8c0e-0ebbdf042a26",
+    "PromotionId": "4973a378-28de-4638-a3cc-2332d50f3d90"
+  },
+  {
+    "ProductId": "abf4b934-54e0-4d1d-a049-9d5b349f2215",
+    "PromotionId": "4973a378-28de-4638-a3cc-2332d50f3d90"
+  },
+  {
+    "ProductId": "706f88ae-c72d-43e6-b5da-ba1db33f2401",
+    "PromotionId": "4973a378-28de-4638-a3cc-2332d50f3d90"
+  },
+  {
+    "ProductId": "fc0ec8a8-c0eb-433f-8a2b-fe5ee65e8457",
+    "PromotionId": "4973a378-28de-4638-a3cc-2332d50f3d90"
+  },
+  {
+    "ProductId": "ff3bbd2a-05a0-44eb-ab2b-1408b1fdd55b",
+    "PromotionId": "4973a378-28de-4638-a3cc-2332d50f3d90"
+  },
+  {
+    "ProductId": "06c95860-1d05-452a-a15a-a18c3e104d3b",
+    "PromotionId": "4973a378-28de-4638-a3cc-2332d50f3d90"
+  },
+  {
+    "ProductId": "77a25d79-6b37-4e35-8601-bae2a5a68a1e",
+    "PromotionId": "293a93e7-9c5a-4b47-bf73-e7ab127207c1"
+  },
+  {
+    "ProductId": "8e3e7e16-1b45-4f0c-a9f4-c48d5c49f9a9",
+    "PromotionId": "293a93e7-9c5a-4b47-bf73-e7ab127207c1"
+  },
+  {
+    "ProductId": "a4fab9f7-f65f-48bc-8c0e-0ebbdf042a26",
+    "PromotionId": "293a93e7-9c5a-4b47-bf73-e7ab127207c1"
+  },
+  {
+    "ProductId": "ff3bbd2a-05a0-44eb-ab2b-1408b1fdd55b",
+    "PromotionId": "293a93e7-9c5a-4b47-bf73-e7ab127207c1"
+  },
+  {
+    "ProductId": "c595c905-76ae-4ab2-950d-b54c6e3ac6f2",
+    "PromotionId": "4b345868-a517-4219-819b-70c4b02b002c"
+  },
+  {
+    "ProductId": "7f7a9d00-d6e2-4ff3-a608-f3dfc0e329ea",
+    "PromotionId": "4b345868-a517-4219-819b-70c4b02b002c"
+  },
+  {
+    "ProductId": "abf4b934-54e0-4d1d-a049-9d5b349f2215",
+    "PromotionId": "4b345868-a517-4219-819b-70c4b02b002c"
+  },
+  {
+    "ProductId": "ff3bbd2a-05a0-44eb-ab2b-1408b1fdd55b",
+    "PromotionId": "4b345868-a517-4219-819b-70c4b02b002c"
+  },
+  {
+    "ProductId": "06c95860-1d05-452a-a15a-a18c3e104d3b",
+    "PromotionId": "4b345868-a517-4219-819b-70c4b02b002c"
+  },
+  {
+    "ProductId": "77a25d79-6b37-4e35-8601-bae2a5a68a1e",
+    "PromotionId": "33a5cbce-b411-4e18-8c31-df92664f12a8"
+  },
+  {
+    "ProductId": "c595c905-76ae-4ab2-950d-b54c6e3ac6f2",
+    "PromotionId": "33a5cbce-b411-4e18-8c31-df92664f12a8"
+  },
+  {
+    "ProductId": "7f7a9d00-d6e2-4ff3-a608-f3dfc0e329ea",
+    "PromotionId": "33a5cbce-b411-4e18-8c31-df92664f12a8"
+  },
+  {
+    "ProductId": "abf4b934-54e0-4d1d-a049-9d5b349f2215",
+    "PromotionId": "33a5cbce-b411-4e18-8c31-df92664f12a8"
+  },
+  {
+    "ProductId": "fc0ec8a8-c0eb-433f-8a2b-fe5ee65e8457",
+    "PromotionId": "33a5cbce-b411-4e18-8c31-df92664f12a8"
+  },
+  {
+    "ProductId": "ff3bbd2a-05a0-44eb-ab2b-1408b1fdd55b",
+    "PromotionId": "33a5cbce-b411-4e18-8c31-df92664f12a8"
+  }
+]
