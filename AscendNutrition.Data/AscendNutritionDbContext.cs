@@ -54,6 +54,7 @@ namespace AscendNutrition.Data
             builder.Entity<Promotion>().HasData(SeedData<Promotion>(@"../AscendNutrition.Data/SeederFiles/promotions.json"));
             builder.Entity<ProductPromotion>().HasData(SeedData<ProductPromotion>(@"../AscendNutrition.Data/SeederFiles/productpromotions.json"));
             builder.Entity<Order>().HasData(SeedData<Order>(@"../AscendNutrition.Data/SeederFiles/orders.json"));
+            builder.Entity<OrderItem>().HasData(SeedData<OrderItem>(@"../AscendNutrition.Data/SeederFiles/orderitems.json"));
         }
 
        
