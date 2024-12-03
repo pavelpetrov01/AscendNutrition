@@ -4,6 +4,7 @@ using AscendNutrition.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AscendNutrition.Data.Migrations
 {
     [DbContext(typeof(AscendNutritionDbContext))]
-    partial class AscendNutritionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241203203009_ReviewDataAdd")]
+    partial class ReviewDataAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

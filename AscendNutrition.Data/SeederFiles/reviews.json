@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "f4c9660b-3a20-4a45-9230-1a527be0eadf",
+    "ProductId": "06c95860-1d05-452a-a15a-a18c3e104d3b",
+    "CustomerId": "24025574-3a06-40c4-8e25-27502b3f5ab7",
+    "Rating": "Satisfied",
+    "Comment": "Great product! Felt a bit too jittery.",
+    "ReviewDate": "2024-11-01"
+  },
+  {
+    "Id": "60b14bc8-c56a-4a5b-afdc-aaba41cb5ca3",
+    "ProductId": "abf4b934-54e0-4d1d-a049-9d5b349f2215",
+    "CustomerId": "24025574-3a06-40c4-8e25-27502b3f5ab7",
+    "Rating": "VerySatisfied",
+    "Comment": "Great product! The pump was great.",
+    "ReviewDate": "2024-11-01"
+  }
+]

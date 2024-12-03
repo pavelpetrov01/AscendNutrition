@@ -6,5 +6,13 @@
     "TotalPrice": 191.99,
     "OrderStatus": "Pending",
     "PaymentMethod": "CreditCard"
+  },
+  {
+    "Id": "acb4153a-67a9-4cb6-ba9a-70df92782d29",
+    "CustomerId": "24025574-3a06-40c4-8e25-27502b3f5ab7",
+    "OrderDate": "2024-10-25",
+    "TotalPrice": 150.84,
+    "OrderStatus": "Delivered",
+    "PaymentMethod": "CashOnDelivery"
   }
 ]

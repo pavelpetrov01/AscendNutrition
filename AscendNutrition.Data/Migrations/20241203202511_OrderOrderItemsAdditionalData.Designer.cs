@@ -4,6 +4,7 @@ using AscendNutrition.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AscendNutrition.Data.Migrations
 {
     [DbContext(typeof(AscendNutritionDbContext))]
-    partial class AscendNutritionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241203202511_OrderOrderItemsAdditionalData")]
+    partial class OrderOrderItemsAdditionalData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -798,26 +801,6 @@ namespace AscendNutrition.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("Reviews");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("f4c9660b-3a20-4a45-9230-1a527be0eadf"),
-                            Comment = "Great product! Felt a bit too jittery.",
-                            CustomerId = new Guid("24025574-3a06-40c4-8e25-27502b3f5ab7"),
-                            ProductId = new Guid("06c95860-1d05-452a-a15a-a18c3e104d3b"),
-                            Rating = 3,
-                            ReviewDate = new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = new Guid("60b14bc8-c56a-4a5b-afdc-aaba41cb5ca3"),
-                            Comment = "Great product! The pump was great.",
-                            CustomerId = new Guid("24025574-3a06-40c4-8e25-27502b3f5ab7"),
-                            ProductId = new Guid("abf4b934-54e0-4d1d-a049-9d5b349f2215"),
-                            Rating = 4,
-                            ReviewDate = new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>

@@ -10,5 +10,17 @@
     "ProductId": "a4fab9f7-f65f-48bc-8c0e-0ebbdf042a26",
     "Quantity": 2,
     "Price": 72.00
+  },
+  {
+    "OrderId": "acb4153a-67a9-4cb6-ba9a-70df92782d29",
+    "ProductId": "abf4b934-54e0-4d1d-a049-9d5b349f2215",
+    "Quantity": 1,
+    "Price": 39.99
+  },
+  {
+    "OrderId": "acb4153a-67a9-4cb6-ba9a-70df92782d29",
+    "ProductId": "06c95860-1d05-452a-a15a-a18c3e104d3b",
+    "Quantity": 3,
+    "Price": 110.85
   }
 ]
