@@ -60,7 +60,7 @@ namespace AscendNutrition.Data
         }
 
        
-        public List<T> SeedData<T>(string filePath)
+        private static List<T> SeedData<T>(string filePath)
         {
             var entities = new List<T>();
             using (StreamReader streamReader = new StreamReader(filePath))

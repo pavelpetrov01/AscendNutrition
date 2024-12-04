@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,11 +13,15 @@ namespace AscendNutrition.Data.Repository.Interfaces
 
        Task<TType> GetByIdAsync(TId id);
 
+       TType FirstOrDefault(Func<TType, bool> predicate);
+
+       Task<TType> FirstOrDefaultAsync(Expression<Func<TType, bool>> predicate);
+       
         IEnumerable<TType> GetAll();
 
         Task<IEnumerable<TType>> GetAllAsync();
 
-        IEnumerable<TType> GetAllAttached();
+        IQueryable<TType> GetAllAttached();
 
         void Add(TType entity);
 

@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AscendNutrition.Data", "Asc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AscendNutrition.Web.Infrastructure", "AscendNutrition.Web.Infrastructure\AscendNutrition.Web.Infrastructure.csproj", "{3AB30EDB-491F-402E-B969-6292F975F0C2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{4B117BC1-9756-4317-AF38-EC53B4AC0247}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AscendNutrition.Services.Data", "AscendNutrition.Services.Data\AscendNutrition.Services.Data.csproj", "{504ECF4E-51A2-4F34-AC32-C624293D6284}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,10 @@ Global
 		{3AB30EDB-491F-402E-B969-6292F975F0C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AB30EDB-491F-402E-B969-6292F975F0C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AB30EDB-491F-402E-B969-6292F975F0C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{504ECF4E-51A2-4F34-AC32-C624293D6284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{504ECF4E-51A2-4F34-AC32-C624293D6284}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{504ECF4E-51A2-4F34-AC32-C624293D6284}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{504ECF4E-51A2-4F34-AC32-C624293D6284}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,5 +67,6 @@ Global
 		{7E051CC0-F7AF-417A-9CF6-49CFAF5AE749} = {2AED00F5-C2C1-4C7E-BC65-A1C34562C5AB}
 		{F0942E5E-2CF5-4B17-B3E8-6D929E72E299} = {2AED00F5-C2C1-4C7E-BC65-A1C34562C5AB}
 		{3AB30EDB-491F-402E-B969-6292F975F0C2} = {00DDE1A6-8D8B-4594-88A6-CD3CE66167CB}
+		{504ECF4E-51A2-4F34-AC32-C624293D6284} = {4B117BC1-9756-4317-AF38-EC53B4AC0247}
 	EndGlobalSection
 EndGlobal

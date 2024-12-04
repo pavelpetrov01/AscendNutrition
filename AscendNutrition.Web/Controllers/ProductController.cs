@@ -1,62 +1,45 @@
 ﻿using AscendNutrition.Data;
 using AscendNutrition.Data.Models;
 using AscendNutrition.Data.Repository.Interfaces;
+using AscendNutrition.Services.Data.Interfaces;
 using AscendNutrition.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using static AscendNutrition.Common.EntityValidationConstants;
+
 
 namespace AscendNutrition.Web.Controllers
 {
     public class ProductController : Controller
     {
         private readonly AscendNutritionDbContext _context;
-        private IRepository<Data.Models.Product, Guid> _productRepository;
+        private IRepository<Product, Guid> _productRepository;
+        private readonly IProductService _productService;
         
-        public ProductController(AscendNutritionDbContext context, IRepository<Data.Models.Product,Guid> productRepository)
+        public ProductController(AscendNutritionDbContext context, IRepository<Product,Guid> productRepository, IProductService productService)
         {
             _context = context;
             _productRepository = productRepository;
+            _productService = productService;
             
         }
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            var model = _context.Products.Select(p =>
-                    new IndexViewModel()
-                    {
-                        Id = p.Id,
-                        Name = p.Name,
-                        Price = p.Price,
-                        Servings = p.Servings,
-                        ImageUrl = p.ImageUrl,
-                    })
-                .AsNoTracking()
-                .ToList();
+            IEnumerable<IndexViewModel> model = 
+                await _productService.IndexGetAllProductsAsync();
             return View(model);
         }
-
-        public IActionResult ProductsByCategory(string category)
+        [HttpGet]
+        public async Task<IActionResult> ProductsByCategory(string category)
         {
             if (String.IsNullOrEmpty(category))
             {
                 return RedirectToAction("Index", "Home");
             }
-            var parentCategory = _context.Categories
-                .FirstOrDefault(c => c.Name.ToLower() == category.ToLower());
-            var model = _context.Products.Where(p => p.Category.Name == category||
-                        p.Category.ParentCategoryId == parentCategory.Id)
-                .Include(p => p.Category.ParentCategory).Select(p =>
-                    new IndexViewModel()
-                    {
-                        Id = p.Id,
-                        Name = p.Name,
-                        Price = p.Price,
-                        Servings = p.Servings,
-                        ImageUrl = p.ImageUrl,
-                    })
-                .AsNoTracking()
-            .ToList();
+
+            IEnumerable<IndexViewModel> model = 
+                await _productService.GetAllProductsByCategoryAsync(category);
             if (category != "Vitamins")
             {
                 ViewData["Title"] = $"All {category}s";
@@ -71,14 +54,27 @@ namespace AscendNutrition.Web.Controllers
             
         }
 
-        public IActionResult Details(string? id)
+        public async Task<IActionResult> Details(string? id)
         {
+            if (String.IsNullOrEmpty(id))
+            {
+                return RedirectToAction("Index", "Product");
+            }
+
             Guid productGuid = Guid.Empty;
             IsGuidValid(id, ref productGuid);
+            if (productGuid == Guid.Empty)
+            {
+                return RedirectToAction("Index", "Product");
+            }
 
+            ProductDetailsViewModel? model = await _productService.GetProductDetailsByIdAsync(productGuid);
+            if (model == null)
+            {
+                return RedirectToAction("Index");
+            }
 
-
-            return View();
+            return View(model);
 
         }
 

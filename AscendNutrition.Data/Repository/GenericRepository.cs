@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using AscendNutrition.Data.Repository.Interfaces;
@@ -40,7 +41,7 @@ namespace AscendNutrition.Data.Repository
         {
             return await _set.ToListAsync();
         }
-        public IEnumerable<TType> GetAllAttached()
+        public IQueryable<TType> GetAllAttached()
         {
             return _set.AsQueryable();
         }
@@ -100,6 +101,18 @@ namespace AscendNutrition.Data.Repository
              await _context.SaveChangesAsync();
         }
 
-       
+        public TType FirstOrDefault(Func<TType, bool> predicate)
+        {
+            TType entity = _set.FirstOrDefault(predicate);
+
+            return entity;
+        }
+
+        public async Task<TType> FirstOrDefaultAsync(Expression<Func<TType, bool>> predicate)
+        {
+            TType entity = await _set.FirstOrDefaultAsync(predicate);
+
+            return entity;
+        }
     }
 }
