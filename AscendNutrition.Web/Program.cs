@@ -14,7 +14,14 @@ namespace AscendNutrition.Web
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            string adminEmail = builder.Configuration.GetValue<string>("Administrator:Email")!;
+            string adminUsername = builder.Configuration.GetValue<string>("Administrator:UserName")!;
+            string adminPassword = builder.Configuration.GetValue<string>("Administrator:Password")!;
+            string adminAddress = builder.Configuration.GetValue<string>("Administrator:Address")!;
+            string adminCity = builder.Configuration.GetValue<string>("Administrator:City")!;
+            string adminFirstName = builder.Configuration.GetValue<string>("Administrator:FirstName")!;
+            string adminLastName = builder.Configuration.GetValue<string>("Administrator:LastName")!;
+            int adminPostalCode = builder.Configuration.GetValue<int>("Administrator:PostalCode")!;
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("Default") ?? throw new InvalidOperationException("Connection string 'Default' not found.");
             builder.Services
@@ -26,15 +33,18 @@ namespace AscendNutrition.Web
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
                 {
-                    options.SignIn.RequireConfirmedAccount = true;
+                    options.SignIn.RequireConfirmedAccount = false;
                 })
                 .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<AscendNutritionDbContext>();
 
             builder.Services.RegisterAllRepositories();
 
+           
+            builder.Services.AddScoped<IBaseInterface, BaseService>();
             builder.Services.AddScoped<IProductService, ProductService>();
 
+           
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
@@ -64,6 +74,8 @@ namespace AscendNutrition.Web
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
 
+            app.SeedAdmin(adminEmail, adminUsername, adminPassword, adminAddress, adminCity, adminFirstName, adminLastName ,adminPostalCode);
+            app.ApplyMigrations();
             app.Run();
         }
     }
