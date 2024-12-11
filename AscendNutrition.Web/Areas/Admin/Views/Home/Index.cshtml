@@ -1,0 +1,64 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Admin Home";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Admin Dashboard</h1>
+    <div class="row text-center">
+        <div class="col-md-6 mb-4 d-flex">
+            <div class="card border-primary shadow flex-fill">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Users</h5>
+                    <p class="card-text">Add, edit, or delete user accounts.</p>
+                    <a asp-area="Admin" asp-controller="UserManagement" asp-action="Index" class="btn btn-primary" style="width: 150px;">Go</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4 d-flex">
+            <div class="card border-primary shadow flex-fill">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Products</h5>
+                    <p class="card-text">Create, update, or remove products from the store.</p>
+                    <a asp-area="Admin" asp-controller="ProductManagement" asp-action="Index" class="btn btn-primary" style="width: 150px;">Go</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4 d-flex">
+            <div class="card border-primary shadow flex-fill">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Orders</h5>
+                    <p class="card-text">View and handle customer orders.</p>
+                    <a href="@Url.Action("Index", "OrderManagement")" class="btn btn-primary" style="width: 150px;">Go</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4 d-flex">
+            <div class="card border-primary shadow flex-fill">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Promotions</h5>
+                    <p class="card-text">Add or modify promotional offers.</p>
+                    <a href="@Url.Action("Index", "PromotionManagement")" class="btn btn-primary" style="width: 150px;">Go</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4 d-flex">
+            <div class="card border-primary shadow flex-fill">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Inventories</h5>
+                    <p class="card-text">Track and adjust inventory levels.</p>
+                    <a href="@Url.Action("Index", "InventoryManagement")" class="btn btn-primary" style="width: 150px;">Go</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4 d-flex">
+            <div class="card border-primary shadow flex-fill">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Categories</h5>
+                    <p class="card-text">Create, manage or remove categories.</p>
+                    <a href="@Url.Action("Index", "CategoryManagement")" class="btn btn-primary" style="width: 150px;">Go</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

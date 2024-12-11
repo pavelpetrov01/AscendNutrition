@@ -1,0 +1,102 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model AscendNutrition.Web.ViewModels.Product.ProductViewModel
+
+@{
+    ViewData["Title"] = "Add a product:";
+}
+
+<form asp-action="AddProduct" method="post">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label for="@Model.Name">Name</label>
+        <input asp-for="@Model.Name" class="form-control" />
+        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="@Model.Brand">Brand</label>
+        <input asp-for="@Model.Brand" class="form-control" />
+        <span asp-validation-for="@Model.Brand" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="@Model.ImageUrl">ImageUrl</label>
+        <input asp-for="@Model.ImageUrl" class="form-control" />
+        <span asp-validation-for="@Model.ImageUrl" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="@Model.Price">Price</label>
+        <input asp-for="@Model.Price" class="form-control" />
+        <span asp-validation-for="@Model.Price" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Suitability">Suitability</label>
+        <select asp-for="Suitability" class="form-control">
+            <option value="">Select Suitability</option>
+            @foreach (var suitability in Model.Suitabilities)
+            {
+                <option value="@suitability.Key" selected="@((suitability.Key == Model.Flavor) ? "selected" : null)">@suitability.Value</option>
+            }
+        </select>
+        <span asp-validation-for="Suitability" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Size">Size</label>
+        <select asp-for="Size" class="form-control">
+            <option value="">Select Size</option>
+            @foreach (var size in Model.Sizes)
+            {
+                <option value="@size.Key" selected="@((size.Key == Model.Flavor) ? "selected" : null)">@size.Value</option>
+            }
+        </select>
+        <span asp-validation-for="Size" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="@Model.Servings">Servings</label>
+        <input asp-for="@Model.Servings" class="form-control" />
+        <span asp-validation-for="@Model.Servings" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="@Model.Quantity">Quantity</label>
+        <input asp-for="@Model.Quantity" class="form-control" />
+        <span asp-validation-for="@Model.Quantity" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="@Model.Description">Description</label>
+        <input asp-for="@Model.Description" class="form-control" />
+        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Flavor">Flavor</label>
+        <select asp-for="Flavor" class="form-control">
+            <option value="">Select Flavor</option>
+            @foreach (var flavor in Model.Flavors)
+            {
+                <option value="@flavor.Key" selected="@((flavor.Key == Model.Flavor) ? "selected" : null)">@flavor.Value</option>
+            }
+        </select>
+        <span asp-validation-for="Flavor" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Category">Category</label>
+        <select asp-for="CategoryId" class="form-control">
+            <option value="">Select Category </option>
+
+            @foreach (var category in Model.Categories)
+            {
+                <option value="@category.CategoryId">@category.Name</option>
+            }
+        </select>
+        <span asp-validation-for="Categories" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Product</button>
+</form>

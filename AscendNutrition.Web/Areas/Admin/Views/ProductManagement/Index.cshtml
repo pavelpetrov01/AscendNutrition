@@ -1,0 +1,62 @@
+﻿@using AscendNutrition.Web.ViewModels.Product
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<AscendNutrition.Web.ViewModels.Product.IndexViewModel>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h1><u>All Products</u></h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Servings</th>
+            <th>Quantity</th>
+            <th>Category</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (IndexViewModel product in Model)
+            {
+                <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(product.ImageUrl))
+                        {
+                            if (product.ImageUrl.Contains("http"))
+                            {
+                                <img src=" @product.ImageUrl" alt="@product.Name" class="img-fluid" style="max-width: 100px; height: 100px; object-fit: cover" />
+                            }
+                            else
+                            {
+                                <img src="@Url.Content("~/" + @product.ImageUrl)" alt="@product.Name" class="img-fluid" style="max-width: 100px; height: 100px; object-fit: cover" />
+                            }
+                        }
+                        else
+                        {
+                            <img src="@Url.Content("~/images/noimg.jpg")" alt="@product.Name" class="img-fluid" style="max-width: 100px; height: 100px; object-fit: cover" />
+                        }
+                    </td>
+                    <td>@product.Name</td>
+                    <td>@product.Price.ToString("C")</td>
+                    <td>@product.Servings</td>
+                    <td>@product.Quantity</td>
+                    <td>@product.Category</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@product.Id" class="btn btn-primary">Details</a>
+                        <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-primary">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<a asp-action="AddProduct" asp-route-id="" class="btn btn-info">Add product</a>

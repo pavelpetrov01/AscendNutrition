@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Build.ObjectModelRemoting;
 using Microsoft.Identity.Client;
 using static AscendNutrition.Common.ApplicationConstants;
+
 namespace AscendNutrition.Web.Infrastructure.Extensions
 {
     public static class ApplicationBuilderExtensions
@@ -24,6 +25,7 @@ namespace AscendNutrition.Web.Infrastructure.Extensions
             AscendNutritionDbContext context = serviceScope
                 .ServiceProvider
                 .GetRequiredService<AscendNutritionDbContext>();
+
             context.Database.Migrate();
 
             return app;
@@ -39,13 +41,16 @@ namespace AscendNutrition.Web.Infrastructure.Extensions
 
             RoleManager<IdentityRole<Guid>>? roleManager = serviceProvider
                 .GetService<RoleManager<IdentityRole<Guid>>>();
+
             IUserStore<ApplicationUser>? userStore = serviceProvider
                 .GetService<IUserStore<ApplicationUser>>();
+
             UserManager<ApplicationUser>? userManager = serviceProvider
                 .GetService<UserManager<ApplicationUser>>();
+
             if (roleManager == null)
             {
-                throw new ArgumentNullException(nameof(roleManager),$"Cannot get the service for{typeof(RoleManager<IdentityRole<Guid>>)}!");
+                throw new ArgumentNullException(nameof(roleManager), $"Cannot get the service for{typeof(RoleManager<IdentityRole<Guid>>)}!");
             }
 
             if (userStore == null)
@@ -60,13 +65,16 @@ namespace AscendNutrition.Web.Infrastructure.Extensions
 
             Task.Run(async () =>
             {
-                bool doesRoleExist = await roleManager.RoleExistsAsync(AdminRoleName);
+                bool doesRoleExist = await roleManager
+                    .RoleExistsAsync(AdminRoleName);
+
                 IdentityRole<Guid>? adminRole = null;
                 if (!doesRoleExist)
                 {
                     adminRole = new IdentityRole<Guid>(AdminRoleName);
 
-                    var result = await roleManager.CreateAsync(adminRole);
+                    var result = await roleManager
+                        .CreateAsync(adminRole);
 
                     if (!result.Succeeded)
                     {
@@ -76,10 +84,13 @@ namespace AscendNutrition.Web.Infrastructure.Extensions
 
                 else
                 {
-                    adminRole = await roleManager.FindByNameAsync(AdminRoleName);
+                    adminRole = await roleManager
+                        .FindByNameAsync(AdminRoleName);
                 }
 
-                ApplicationUser? admin = await userManager.FindByEmailAsync(email);
+                ApplicationUser? admin = await userManager
+                    .FindByEmailAsync(email);
+
                 if (admin == null)
                 {
                     admin = await CreateAdminAsync(email, username, password, address, city, firstName, lastName, postalCode,
@@ -90,37 +101,50 @@ namespace AscendNutrition.Web.Infrastructure.Extensions
                 {
                     return app;
                 }
-                var userResult = await userManager.AddToRoleAsync(admin, AdminRoleName);
+                var userResult = await userManager
+                    .AddToRoleAsync(admin, AdminRoleName);
+
                 if (!userResult.Succeeded)
                 {
                     throw new InvalidOperationException($"Error occured! Cannot add {username} to the {AdminRoleName} role!");
                 }
                 return app;
-            }).GetAwaiter()
+            })
+                .GetAwaiter()
             .GetResult();
             return app;
         }
 
         private static async Task<ApplicationUser> CreateAdminAsync(string email, string username, string password, string address,
-            string city, string firstName, string lastName,int postalCode, IUserStore<ApplicationUser> userStore, UserManager<ApplicationUser> userManager)
+            string city, string firstName, string lastName, int postalCode, IUserStore<ApplicationUser> userStore, UserManager<ApplicationUser> userManager)
         {
             ApplicationUser user = new ApplicationUser
             {
                 Email = email
             };
-            await userStore.SetUserNameAsync(user, username, CancellationToken.None);
-            user.FirstName = firstName;
-            user.LastName = lastName;
-            user.Address = address;
-            user.City = city;
-            user.PostalCode = postalCode;
-           var result =  await userManager.CreateAsync(user, password);
-           if (!result.Succeeded)
-           {
-               throw new InvalidOperationException($"Error occured! Cannot create {AdminRoleName}!");
-           }
 
-           return user;
+            await userStore
+                .SetUserNameAsync(user, username, CancellationToken.None);
+
+            user.FirstName = firstName;
+
+            user.LastName = lastName;
+
+            user.Address = address;
+
+            user.City = city;
+
+            user.PostalCode = postalCode;
+
+            var result = await userManager
+                .CreateAsync(user, password);
+
+            if (!result.Succeeded)
+            {
+                throw new InvalidOperationException($"Error occured! Cannot create {AdminRoleName}!");
+            }
+
+            return user;
         }
     }
 }

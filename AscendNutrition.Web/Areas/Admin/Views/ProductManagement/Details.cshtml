@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
-@model AscendNutrition.Web.ViewModels.Product.ProductDetailsViewModel;
+﻿@model AscendNutrition.Web.ViewModels.Product.ProductDetailsViewModel;
 
 <div class="container mt-5">
 
@@ -11,16 +10,22 @@
 
             <table class="table table-bordered">
                 <tr>
+
                     <td><strong>Brand:</strong></td>
                     <td>@Model.Brand</td>
+
                 </tr>
+
                 <tr>
+
                     <td><strong>Suitability:</strong></td>
                     <td>@Model.Suitability</td>
+
                 </tr>
                 @if (!String.IsNullOrEmpty(Model.Size))
                 {
                     <tr>
+
                         <td><strong>Size:</strong></td>
                         <td>
                             @if (Model.Size == "ThreeHundredGrams")
@@ -44,6 +49,7 @@
                                 @:2500 Grams
                             }
                         </td>
+
                     </tr>
                 }
 
@@ -71,29 +77,11 @@
                 }
             </table>
 
-            @if (User?.Identity?.IsAuthenticated == true)
-            {
-                <div class="mt-4">
-                    <label asp-for="@Model.Quantity" class="form-label"><strong>Quantity:</strong></label>
 
-
-                    <div class="d-flex align-items-center">
-                        <input asp-for="@Model.Quantity" class="form-control w-25 d-inline-block" min="1" value="1">
-
-
-                        <form asp-controller="Product" asp-action="AddToCart" method="post" class="ms-auto">
-                            @Html.AntiForgeryToken()
-                            <input type="hidden" name="id" value="@Model.Id" />
-                            <input type="hidden" name="quantity" value="@Model.Quantity" />
-                            <button type="submit" class="btn btn-success" style="width: 150px;">Buy</button>
-                        </form>
-                    </div>
-                </div>
-            }
         </div>
 
         <div class="col-md-4">
-            @if (@Model.ImageUrl != null)
+            @if (Model.ImageUrl != null)
             {
                 if (Model.ImageUrl.Contains("http"))
                 {
@@ -108,16 +96,9 @@
             {
                 <img src="@Url.Content("~/images/noimg.jpg")" alt="Product Image" class="img-fluid" />
             }
+
         </div>
     </div>
-
-    @if (User?.Identity?.IsAuthenticated == true && Model.HasUserOrderedProduct == true && Model.HasUserReviewedProduct == false)
-    {
-        <form asp-controller="Product" asp-action="AddReview" method="get">
-            @Html.AntiForgeryToken()
-            <a asp-action="AddReview" asp-route-id="@Model.Id" class="btn btn-primary mt-3">Add a review:</a>
-        </form>
-    }
 
     <div class="row mt-5">
         <div class="col-md-8">
@@ -125,7 +106,7 @@
             <div class="list-group">
                 @if (Model.Reviews != null && Model.Reviews.Any())
                 {
-                    foreach (var review in Model.Reviews.OrderByDescending(r => r.ReviewDate))
+                    foreach (var review in Model.Reviews)
                     {
                         <div class="list-group-item">
                             <p><strong>@review.Name:</strong> @review.Rating/4</p>

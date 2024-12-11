@@ -1,110 +1,131 @@
 ﻿using AscendNutrition.Data;
 using AscendNutrition.Data.Models;
+using AscendNutrition.Data.Models.Enums.Review;
 using AscendNutrition.Data.Repository.Interfaces;
 using AscendNutrition.Services.Data.Interfaces;
-using AscendNutrition.Web.ViewModels;
+using AscendNutrition.Web.ViewModels.Product;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
+using AscendNutrition.Data.Models.Enums.Product;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 
 namespace AscendNutrition.Web.Controllers
 {
-    public class ProductController : Controller
+    public class ProductController : BaseController
     {
-        private readonly AscendNutritionDbContext _context;
-        private IRepository<Product, Guid> _productRepository;
+
         private readonly IProductService _productService;
-        
-        public ProductController(AscendNutritionDbContext context, IRepository<Product,Guid> productRepository, IProductService productService)
+
+        public ProductController(IProductService productService)
         {
-            _context = context;
-            _productRepository = productRepository;
             _productService = productService;
-            
+
         }
+
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> ProductsByCategory(string? category)
         {
-            IEnumerable<IndexViewModel> model = 
-                await _productService.IndexGetAllProductsAsync();
-            return View(model);
-        }
-        [HttpGet]
-        public async Task<IActionResult> ProductsByCategory(string category)
-        {
+
             if (String.IsNullOrEmpty(category))
             {
                 return RedirectToAction("Index", "Home");
             }
 
-            IEnumerable<IndexViewModel> model = 
+            IEnumerable<IndexViewModel>? model =
                 await _productService.GetAllProductsByCategoryAsync(category);
+            if (model == null)
+            {
+                return View("Index");
+            }
+
             if (category != "Vitamins")
             {
                 ViewData["Title"] = $"All {category}s";
-                
+
             }
             else
             {
                 ViewData["Title"] = $"All {category}";
             }
-            
+
             return View(model);
-            
+
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            IEnumerable<IndexViewModel> model =
+                await _productService.IndexGetAllProductsAsync();
+            return View(model);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Details(string? id)
         {
             if (String.IsNullOrEmpty(id))
             {
                 return RedirectToAction("Index", "Product");
             }
+            ProductDetailsViewModel? model = await _productService.GetProductDetailsByIdAsync(id);
 
-            Guid productGuid = Guid.Empty;
-            IsGuidValid(id, ref productGuid);
-            if (productGuid == Guid.Empty)
+            if (User?.Identity?.IsAuthenticated == true)
             {
-                return RedirectToAction("Index", "Product");
-            }
-
-            ProductDetailsViewModel? model = await _productService.GetProductDetailsByIdAsync(productGuid);
-            if (model == null)
-            {
-                return RedirectToAction("Index");
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
+                await _productService.CheckIfUserHasOrderedProduct(userId, id, model);
             }
 
             return View(model);
 
         }
 
-        public IActionResult Buy(string? id)
+        [Authorize]
+        [HttpGet]
+        public IActionResult AddReview(string? id)
         {
-            Guid productGuid = Guid.Empty;
-            IsGuidValid(id, ref productGuid);
 
+            if (id == null)
+            {
+                return RedirectToAction("Details");
+            }
+            var addReviewViewModel = new AddReviewViewModel
+            {
+                ProductId = id
+            };
 
-
-            return View();
+            return View(addReviewViewModel);
 
         }
 
-        protected bool IsGuidValid(string? id, ref Guid parsedGuid)
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> AddReview(AddReviewViewModel model)
         {
-            // Non-existing parameter in the URL
-            if (String.IsNullOrWhiteSpace(id))
+            if (!ModelState.IsValid)
             {
-                return false;
+                return View("AddReview");
             }
 
-            // Invalid parameter in the URL
-            bool isGuidValid = Guid.TryParse(id, out parsedGuid);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            Guid validUserId = Guid.Empty;
+            bool isGuidValid = IsGuidValid(userId, ref validUserId);
+
             if (!isGuidValid)
             {
-                return false;
+                return RedirectToAction("Details", new { id = model.ProductId });
             }
 
-            return true;
+            bool result = await _productService.AddReviewToProductAsync(model, validUserId);
+            if (!result)
+            {
+                ModelState.AddModelError(string.Empty, "Error while adding the review!");
+                return RedirectToAction("Details", new { id = model.ProductId });
+            }
+            return RedirectToAction("Details", new { id = model.ProductId });
         }
+
     }
 }
