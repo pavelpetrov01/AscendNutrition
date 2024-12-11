@@ -14,12 +14,12 @@ namespace AscendNutrition.Data.Models
     {
         public Guid OrderId { get; set; }
 
-        [ForeignKey(nameof(OrderId))] 
+        [ForeignKey(nameof(OrderId))]
         public Order Order { get; set; } = null!;
 
         public Guid ProductId { get; set; }
 
-        [ForeignKey(nameof(ProductId))] 
+        [ForeignKey(nameof(ProductId))]
         public Product Product { get; set; } = null!;
 
         [Required]
@@ -31,5 +31,6 @@ namespace AscendNutrition.Data.Models
         [Column(TypeName = "decimal(18,2)")]
         [Comment("Price per single unit")]
         public decimal Price { get; set; }
+
     }
 }

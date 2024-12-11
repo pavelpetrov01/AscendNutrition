@@ -38,5 +38,8 @@ namespace AscendNutrition.Data.Models
         [Comment("The day on which the review was made")]
         public DateTime ReviewDate { get; set; }
 
+        [Comment("Flag which is used for soft deletion")]
+        public bool IsDeleted { get; set; } = false;
+
     }
 }

@@ -41,6 +41,9 @@ namespace AscendNutrition.Data.Models
         [Comment("Shows the way in which the order will be paid")]
         public PaymentMethod PaymentMethod { get; set; }
 
+        [Comment("Flag which is used for soft deletion")]
+        public bool IsDeleted { get; set; } = false;
+
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }
 }

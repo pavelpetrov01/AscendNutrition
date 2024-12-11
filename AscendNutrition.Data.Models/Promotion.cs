@@ -33,6 +33,9 @@ namespace AscendNutrition.Data.Models
         [Comment("The end of the promotion")]
         public DateTime EndDate { get; set; }
 
+        [Comment("Flag which is used for soft deletion")]
+        public bool IsDeleted { get; set; } = false;
+
         public ICollection<ProductPromotion> ProductPromotions { get; set; } = new List<ProductPromotion>();
     }
 }

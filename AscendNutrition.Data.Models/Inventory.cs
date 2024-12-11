@@ -20,6 +20,9 @@ namespace AscendNutrition.Data.Models
         [Comment("The city in which the inventory is")]
         public string City { get; set; } = null!;
 
+        [Comment("Flag which is used for soft deletion")]
+        public bool IsDeleted { get; set; } = false;
+
         public ICollection<ProductInventory> ProductInventories { get; set; } = new List<ProductInventory>();
     }
 }

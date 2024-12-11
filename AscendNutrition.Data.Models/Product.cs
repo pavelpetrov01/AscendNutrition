@@ -62,6 +62,9 @@ namespace AscendNutrition.Data.Models
         [Comment("Enum for the product's flavour")]
         public Flavour? Flavour { get; set; }
 
+        [Comment("Flag which is used for soft deletion")]
+        public bool IsDeleted { get; set; } = false;
+
         [Comment("Identifier of the category")]
         public Guid CategoryId { get; set; }
 

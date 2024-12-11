@@ -29,6 +29,8 @@ namespace AscendNutrition.Data.Models
         [ForeignKey(nameof(ParentCategoryId))]
         public Category? ParentCategory { get; set; }
 
+        [Comment("Flag which is used for soft deletion")]
+        public bool IsDeleted { get; set; } = false;
         public ICollection<Category> SubCategories { get; set; } = new List<Category>();
     }
 }
