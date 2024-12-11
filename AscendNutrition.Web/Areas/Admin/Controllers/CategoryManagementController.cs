@@ -160,7 +160,6 @@ namespace AscendNutrition.Web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-
                 return View(model);
             }
 

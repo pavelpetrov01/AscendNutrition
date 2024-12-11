@@ -110,7 +110,7 @@ namespace AscendNutrition.Services.Tests
 
             var inventoryService = new InventoryService(mockInventoryRepository.Object, mockProductRepository.Object, mockProductInventoryRepository.Object);
 
-            var result = await inventoryService.GetProductForEditByIdAsync(inventoryId.ToString());
+            var result = await inventoryService.GetInventoryForEditByIdAsync(inventoryId.ToString());
            
             Assert.IsNotNull(result);
             Assert.AreEqual(inventoryId.ToString(), result.Id);

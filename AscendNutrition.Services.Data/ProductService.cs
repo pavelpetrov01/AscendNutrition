@@ -122,22 +122,24 @@ namespace AscendNutrition.Services.Data
 
         public async Task<bool> EditProductAsync(ProductViewModel model)
         {
+            bool result = false;
             Product product = await _productRepository.GetByIdAsync(model.Id);
-            if (product.IsDeleted == false)
+            if (product.IsDeleted == true)
             {
-                product.Brand = model.Brand;
-                product.Price = model.Price;
-                product.Description = model.Description;
-                product.ImageUrl = model.ImageUrl;
-                product.Name = model.Name;
-                product.Suitability = (Suitability)model.Suitability;
-                product.Size = (Size?)model.Size;
-                product.Servings = model.Servings;
-                product.Quantity = model.Quantity;
-                product.CategoryId = model.CategoryId;
-                product.Flavour = (Flavour?)model.Flavor;
+                return result;
             }
-           bool result = await _productRepository.UpdateAsync(product);
+            product.Brand = model.Brand;
+            product.Price = model.Price;
+            product.Description = model.Description;
+            product.ImageUrl = model.ImageUrl;
+            product.Name = model.Name;
+            product.Suitability = (Suitability)model.Suitability;
+            product.Size = (Size?)model.Size;
+            product.Servings = model.Servings;
+            product.Quantity = model.Quantity;
+            product.CategoryId = model.CategoryId;
+            product.Flavour = (Flavour?)model.Flavor;
+            result = await _productRepository.UpdateAsync(product);
 
             return result;
         }

@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model AscendNutrition.Web.ViewModels.AdminArea.InventoryManagement.DeleteInventoryViewModel
+
+@{
+    ViewData["Title"] = "Delete Inventory";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="alert alert-warning" role="alert">
+    Are you sure you want to delete the following inventory?
+</div>
+
+<div class="mb-3">
+    <h4>Inventory Name:</h4>
+    <p>@Model.Name</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="Name" />
+
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

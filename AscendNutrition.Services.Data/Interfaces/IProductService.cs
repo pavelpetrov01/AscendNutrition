@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AscendNutrition.Web.ViewModels;
+using AscendNutrition.Web.ViewModels.Product;
 
 namespace AscendNutrition.Services.Data.Interfaces
 {
@@ -11,6 +11,17 @@ namespace AscendNutrition.Services.Data.Interfaces
     {
         Task<IEnumerable<IndexViewModel>> IndexGetAllProductsAsync();
         Task<IEnumerable<IndexViewModel>> GetAllProductsByCategoryAsync(string category);
-        Task<ProductDetailsViewModel?> GetProductDetailsByIdAsync(Guid id);
+        Task<ProductDetailsViewModel> GetProductDetailsByIdAsync(string id);
+        Task<ProductViewModel> GetNewProductForm();
+        Task<ProductViewModel?> GetProductForEditByIdAsync(string? id);
+        Task<bool> EditProductAsync(ProductViewModel model);
+        Task AddProductAsync(ProductViewModel model);
+        Task<bool> AddReviewToProductAsync(AddReviewViewModel model, Guid userId);
+        Task<DeleteViewModel?> GetProductToDeleteByIdAsync(string? productId);
+        Task<bool> SoftDeleteProductAsync(string productId);
+
+        Task<ProductViewModel> AddCategoriesAndEnumsIfModelStateIsNotValid(ProductViewModel model);
+        Task<ProductDetailsViewModel> CheckIfUserHasOrderedProduct(string userId, string productId, ProductDetailsViewModel? model);
+
     }
 }

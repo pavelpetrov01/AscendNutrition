@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model AscendNutrition.Web.ViewModels.AdminArea.InventoryManagement.AddProductToInventoryViewModel
+
+<form asp-action="AddProduct" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="InventoryId" />
+
+    <div class="form-group">
+        <label for="Product">Select Product</label>
+        <select asp-for="ProductId" class="form-control">
+            <option value="">Select a product</option>
+            @foreach (var product in Model.Products)
+            {
+                <option value="@product.Id">@product.Name</option>
+            }
+        </select>
+        <span asp-validation-for="ProductId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Quantity">Quantity</label>
+        <input asp-for="Quantity" class="form-control" />
+        <span asp-validation-for="Quantity" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Product</button>
+</form>
