@@ -58,9 +58,24 @@ namespace AscendNutrition.Data.Repository
              await _context.SaveChangesAsync();
         }
 
-        public bool Delete(TId id)
+        public bool Delete(object id)
         {
-            TType entity = GetById(id);
+            TType entity = null;
+
+            if (id is Guid singleKey)
+            {
+                
+                entity = _set.Find(singleKey);
+            }
+            else if (id is object[] compositeKeys)
+            {
+                entity = _set.Find(compositeKeys);
+            }
+            else
+            {
+                return false;
+            }
+
             if (entity == null)
             {
                 return false;
@@ -73,32 +88,78 @@ namespace AscendNutrition.Data.Repository
 
        
 
-        public async Task<bool> DeleteAsync(TId id)
+        public async Task<bool> DeleteAsync(object id)
         {
-            TType entity = await GetByIdAsync(id);
+            TType entity = null;
+
+            if (id is Guid singleKey)
+            {
+                
+                entity = await _set.FindAsync(singleKey);
+            }
+            else if (id is object[] compositeKeys)
+            {
+                
+                entity = await _set.FindAsync(compositeKeys);
+            }
+            else
+            {
+                
+                return false;
+            }
+
             if (entity == null)
             {
+                
                 return false;
             }
 
             _set.Remove(entity);
             await _context.SaveChangesAsync();
             return true;
+
+            //TType entity = await GetByIdAsync(id);
+            //if (entity == null)
+            //{
+            //    return false;
+            //}
+
+            //_set.Remove(entity);
+            //await _context.SaveChangesAsync();
+            //return true;
         }
 
 
-        public void Update(TType entity)
+        public bool Update(TType entity)
         {
-            _set.Attach(entity);
-            _context.Entry(entity).State = EntityState.Modified;
-            _context.SaveChanges();
+            try
+            {
+                _set.Attach(entity);
+                _context.Entry(entity).State = EntityState.Modified;
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+           
         }
 
-        public async Task UpdateAsync(TType entity)
+        public async Task<bool> UpdateAsync(TType entity)
         {
-            _set.Attach(entity);
-            _context.Entry(entity).State = EntityState.Modified;
-             await _context.SaveChangesAsync();
+            try
+            {
+                _set.Attach(entity);
+                _context.Entry(entity).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            
         }
 
         public TType FirstOrDefault(Func<TType, bool> predicate)

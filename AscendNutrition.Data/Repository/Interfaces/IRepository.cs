@@ -27,12 +27,12 @@ namespace AscendNutrition.Data.Repository.Interfaces
 
         Task AddAsync(TType entity);
 
-        bool Delete(TId id);
+        bool Delete(object id);
 
-        Task<bool> DeleteAsync(TId id);
+        Task<bool> DeleteAsync(object id);
 
-        void Update(TType entity);
+        bool Update(TType entity);
 
-        Task UpdateAsync(TType entity);
+        Task<bool> UpdateAsync(TType entity);
     }
 }
