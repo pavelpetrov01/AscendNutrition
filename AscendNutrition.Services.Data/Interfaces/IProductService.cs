@@ -9,7 +9,7 @@ namespace AscendNutrition.Services.Data.Interfaces
 {
     public interface IProductService
     {
-        Task<IEnumerable<IndexViewModel>> IndexGetAllProductsAsync();
+        Task<IEnumerable<IndexViewModel>> IndexGetAllProductsAsync(AllProductsSearchFilterViewModel input);
         Task<IEnumerable<IndexViewModel>> GetAllProductsByCategoryAsync(string category);
         Task<ProductDetailsViewModel> GetProductDetailsByIdAsync(string id);
         Task<ProductViewModel> GetNewProductForm();
@@ -22,6 +22,10 @@ namespace AscendNutrition.Services.Data.Interfaces
 
         Task<ProductViewModel> AddCategoriesAndEnumsIfModelStateIsNotValid(ProductViewModel model);
         Task<ProductDetailsViewModel> CheckIfUserHasOrderedProduct(string userId, string productId, ProductDetailsViewModel? model);
+        Task<IEnumerable<IndexViewModel>> AdminIndexGetAllProductsAsync();
+        Task<IEnumerable<string>> GetAllCategoriesAsync();
+
+        Task<int> GetProductCountAsync(AllProductsSearchFilterViewModel model);
 
     }
 }

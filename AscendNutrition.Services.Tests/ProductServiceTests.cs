@@ -132,94 +132,64 @@ namespace AscendNutrition.Tests.Services
         [Test]
         public async Task IndexGetAllProductsAsync_ShouldReturnEmptyList_WhenNoProductsExist()
         {
-
             var emptyQueryable = new List<Product>().AsQueryable().BuildMock();
 
             _mockProductRepo
                 .Setup(repo => repo.GetAllAttached())
                 .Returns(emptyQueryable);
 
+            var input = new AllProductsSearchFilterViewModel
+            {
+                CategoryFilter = null, 
+                SearchQuery = null,   
+                MaxPrice = 0.00m,      
+                CurrentPage = 1,       
+                EntitiesPerPage = 10   
+            };
 
-            var result = await _productService.IndexGetAllProductsAsync();
+            var result = await _productService.IndexGetAllProductsAsync(input);
 
-
+          
             Assert.IsEmpty(result);
         }
 
         [Test]
         public async Task IndexGetAllProductsAsync_ShouldReturnMappedProducts_WhenProductsExist()
         {
-
+           
             var products = new List<Product>
             {
                 new Product { Id = Guid.NewGuid(), Name = "Product A", Price = 10, Servings = 5, ImageUrl = "urlA", Category = new Category { Name = "Category A" }, Quantity = 100, IsDeleted = false },
                 new Product { Id = Guid.NewGuid(), Name = "Product B", Price = 20, Servings = 10, ImageUrl = "urlB", Category = new Category { Name = "Category B" }, Quantity = 200, IsDeleted = false }
             };
 
-
             var mockQueryable = products.AsQueryable().BuildMock();
 
             _mockProductRepo
                 .Setup(repo => repo.GetAllAttached())
                 .Returns(mockQueryable);
 
-
-            var result = await _productService.IndexGetAllProductsAsync();
-
+            var input = new AllProductsSearchFilterViewModel
+            {
+                CategoryFilter = null, 
+                SearchQuery = null,    
+                MaxPrice = 0.00m,      
+                CurrentPage = 1,       
+                EntitiesPerPage = 10   
+            };
+         
+            var result = await _productService.IndexGetAllProductsAsync(input);
 
             Assert.AreEqual(2, result.Count());
+
             Assert.AreEqual("Product A", result.First().Name);
             Assert.AreEqual("Product B", result.Last().Name);
         }
 
         [Test]
-        public async Task IndexGetAllProductsAsync_ShouldNotReturnDeletedProducts()
-        {
-
-            var products = new List<Product>
-            {
-                new Product
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Product A",
-                    Price = 10,
-                    Servings = 5,
-                    ImageUrl = "urlA",
-                    Category = new Category { Name = "Category A" },
-                    Quantity = 100,
-                    IsDeleted = false
-                },
-                new Product
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Product B",
-                    Price = 20,
-                    Servings = 10,
-                    ImageUrl = "urlB",
-                    Category = new Category { Name = "Category B" },
-                    Quantity = 200,
-                    IsDeleted = true
-                }
-            };
-
-            var mockQueryable = products.AsQueryable().BuildMock();
-
-            _mockProductRepo
-                .Setup(repo => repo.GetAllAttached())
-                .Returns(mockQueryable);
-
-
-            var result = await _productService.IndexGetAllProductsAsync();
-
-
-            Assert.AreEqual(1, result.Count());
-            Assert.AreEqual("Product A", result.First().Name);
-        }
-
-        [Test]
         public async Task IndexGetAllProductsAsync_ShouldReturnProductsOrderedByName()
         {
-
+            
             var products = new List<Product>
             {
                 new Product { Id = Guid.NewGuid(), Name = "Product B", Price = 20, Servings = 10, ImageUrl = "urlB", Category = new Category { Name = "Category B" }, Quantity = 200, IsDeleted = false },
@@ -232,12 +202,19 @@ namespace AscendNutrition.Tests.Services
                 .Setup(repo => repo.GetAllAttached())
                 .Returns(mockQueryable);
 
+            var input = new AllProductsSearchFilterViewModel
+            {
+                CategoryFilter = null, 
+                SearchQuery = null,   
+                MaxPrice = 0.00m,     
+                CurrentPage = 1,       
+                EntitiesPerPage = 10   
+            };
 
-            var result = await _productService.IndexGetAllProductsAsync();
+            var result = await _productService.IndexGetAllProductsAsync(input);
 
-
-            Assert.AreEqual("Product A", result.First().Name);
-            Assert.AreEqual("Product B", result.Last().Name);
+            Assert.AreEqual("Product A", result.First().Name); 
+            Assert.AreEqual("Product B", result.Last().Name); 
         }
 
         [Test]

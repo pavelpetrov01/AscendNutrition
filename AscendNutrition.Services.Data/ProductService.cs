@@ -143,6 +143,15 @@ namespace AscendNutrition.Services.Data
 
             return result;
         }
+
+        public async Task<IEnumerable<string>> GetAllCategoriesAsync()
+        {
+            IEnumerable<string> categories = await _categoryRepository.GetAllAttached().Where(c => c.IsDeleted == false)
+                .Select(c => c.Name).Distinct().ToListAsync();
+
+            return categories;
+        }
+
         public async Task<IEnumerable<IndexViewModel>> GetAllProductsByCategoryAsync(string category)
         {
            
@@ -312,7 +321,50 @@ namespace AscendNutrition.Services.Data
         }
 
         
-        public async Task<IEnumerable<IndexViewModel>> IndexGetAllProductsAsync()
+        public async Task<IEnumerable<IndexViewModel>> IndexGetAllProductsAsync(AllProductsSearchFilterViewModel input)
+        {
+
+            IQueryable<Product> allProducts = _productRepository.GetAllAttached();
+
+            if (!string.IsNullOrWhiteSpace(input.CategoryFilter))
+            {
+               allProducts = allProducts.Where(p => p.Category.Name.ToLower().Contains(input.CategoryFilter.ToLower()));
+            }
+
+            if (!string.IsNullOrWhiteSpace(input.SearchQuery))
+            {
+                allProducts = allProducts.Where(ap => ap.Name.ToLower().Contains(input.SearchQuery.ToLower()));
+            }
+
+            if (input.MaxPrice > 0.00m)
+            {
+                allProducts = allProducts.Where(p => p.Price <= input.MaxPrice);
+            }
+
+            if (input.CurrentPage.HasValue && input.EntitiesPerPage.HasValue)
+            {
+                allProducts = allProducts
+                    .Skip((input.CurrentPage.Value - 1) * input.EntitiesPerPage.Value)
+                    .Take(input.EntitiesPerPage.Value);
+            }
+
+            return await allProducts.Select(p => new IndexViewModel()
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    Servings = p.Servings,
+                    ImageUrl = p.ImageUrl,
+                    Category = p.Category.Name,
+                    Quantity = p.Quantity
+                })
+                .AsNoTracking()
+                .OrderBy(p => p.Name)
+                .ToListAsync();
+
+        }
+
+        public async Task<IEnumerable<IndexViewModel>> AdminIndexGetAllProductsAsync()
         {
             IEnumerable<IndexViewModel> model = await _productRepository
                 .GetAllAttached()
@@ -334,7 +386,7 @@ namespace AscendNutrition.Services.Data
             return model;
         }
 
-        
+
         public async Task<bool> SoftDeleteProductAsync(string productId)
         {
             Guid validId = Guid.Empty;
@@ -347,6 +399,21 @@ namespace AscendNutrition.Services.Data
 
             product.IsDeleted = true;
             return await _productRepository.UpdateAsync(product);
+        }
+
+        public async Task<int> GetProductCountAsync(AllProductsSearchFilterViewModel model)
+        {
+            AllProductsSearchFilterViewModel viewModel = new AllProductsSearchFilterViewModel()
+            {
+                CurrentPage = null,
+                EntitiesPerPage = null,
+                SearchQuery = model.SearchQuery,
+                CategoryFilter = model.CategoryFilter,
+                MaxPrice = model.MaxPrice
+            };
+
+            int count = (await IndexGetAllProductsAsync(viewModel)).Count();
+            return count;
         }
     }
 }

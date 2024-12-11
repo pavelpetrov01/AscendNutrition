@@ -1,16 +1,43 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
-@model IEnumerable<AscendNutrition.Web.ViewModels.Product.IndexViewModel>
+@model AscendNutrition.Web.ViewModels.Product.AllProductsSearchFilterViewModel
 
 @{
     ViewData["Title"] = "All Products";
 }
 <div class="container">
     <h1><u>@ViewData["Title"]</u></h1>
+    <form method="get" class="mb-4">
+        <div class="row align-items-end">
+            <div class="col-md-4">
+                <label for="filterName" class="form-label">Filter by Name</label>
+                <input asp-for="SearchQuery" class="form-control" placeholder="Search by product name" />
+            </div>
+            <div class="col-md-4">
+                <label for="maxPrice" class="form-label">Filter by Max Price</label>
+                <input asp-for="MaxPrice" class="form-control" placeholder="Enter max price" />
+            </div>
+            <div class="col-md-4">
+                <label for="categoryFilter" class="form-label">Filter by Category</label>
+                <select asp-for="CategoryFilter" class="form-select">
+                    <option value="">Select a category</option>
+                    @if (Model.AllCategories != null)
+                    {
+                       
+                        foreach (string category in Model.AllCategories)
+                        {
+                            <option value="@category">@category</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Apply Filters</button>
+    </form>
 
-    @if (Model != null && Model.Any())
+    @if (Model.AllProducts != null)
     {
         <div class="row">
-            @foreach (var product in Model)
+            @foreach (var product in Model.AllProducts)
             {
                 <div class="col-md-6 mb-4">
                     <div class="card h-100 border-dark">
@@ -42,14 +69,18 @@
                                     <a asp-action="Details" asp-route-id="@product.Id" class="btn btn-primary mt-2 me-2 w-auto">Details</a>
                                     @if (User?.Identity?.IsAuthenticated == true)
                                     {
-                                        <a asp-action="AddToCart" asp-route-id="@product.Id" class="btn btn-success mt-2 w-auto">Buy</a>
+                                        <form asp-controller="Order" asp-action="AddToCart" method="post" class="d-inline">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@product.Id"/>
+                                            <input type="hidden" name="quantity" value="1"/>
+                                            <button type="submit" class="btn btn-success mt-2 w-100">Buy</button>
+                                        </form>
                                     }
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             }
         </div>
     }
@@ -57,4 +88,49 @@
     {
         <p class="text-center"><strong>No products available at the moment. Please check later.</strong></p>
     }
+    <nav aria-label="Page navigation" class="mt-4">
+        <ul class="pagination">
+            @if (Model.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="Index"
+                       asp-route-currentPage="@(Model.CurrentPage - 1)"
+                       asp-route-searchQuery="@Model.SearchQuery"
+                       asp-route-categoryFilter="@Model.CategoryFilter"
+                       asp-route-maxPrice="@Model.MaxPrice"
+                       asp-route-entitiesPerPage="@Model.EntitiesPerPage">
+                        Previous
+                    </a>
+                </li>
+            }
+
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                    <a class="page-link" asp-action="Index"
+                       asp-route-currentPage="@i"
+                       asp-route-searchQuery="@Model.SearchQuery"
+                       asp-route-categoryFilter="@Model.CategoryFilter"
+                       asp-route-maxPrice="@Model.MaxPrice"
+                       asp-route-entitiesPerPage="@Model.EntitiesPerPage">
+                        @i
+                    </a>
+                </li>
+            }
+
+            @if (Model.CurrentPage < Model.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="Index"
+                       asp-route-currentPage="@(Model.CurrentPage + 1)"
+                       asp-route-searchQuery="@Model.SearchQuery"
+                       asp-route-categoryFilter="@Model.CategoryFilter"
+                       asp-route-maxPrice="@Model.MaxPrice"
+                       asp-route-entitiesPerPage="@Model.EntitiesPerPage">
+                        Next
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
 </div>

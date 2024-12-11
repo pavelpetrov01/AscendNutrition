@@ -34,38 +34,15 @@
                         }
                     </td>
                     <td>
-
-                        <form method="post" asp-action="AssignRole" asp-controller="UserManagement" asp-area="Admin" class="d-inline">
-                            @Html.AntiForgeryToken()
-                            <input type="hidden" name="userId" value="@user.Id" />
-                            <select name="role" class="form-select d-inline w-auto">
-                                @foreach (string role in allRoles)
-                                {
-                                    <option value="@role">@role</option>
-                                }
-                            </select>
-                            <button type="submit" class="btn btn-primary btn-sm">Assign Role</button>
-                        </form>
-
-
-                        <form method="post" asp-action="RemoveRole" asp-controller="UserManagement" asp-area="Admin" class="d-inline ms-2">
-                            @Html.AntiForgeryToken()
-                            <input type="hidden" name="userId" value="@user.Id" />
-                            <select name="role" class="form-select d-inline w-auto">
-                                @foreach (var role in user.Roles)
-                                {
-                                    <option value="@role">@role</option>
-                                }
-                            </select>
-                            <button type="submit" class="btn btn-warning btn-sm">Remove Role</button>
-                        </form>
-
-
-                        <form method="post" asp-action="DeleteUser" asp-controller="UserManagement" asp-area="Admin" class="d-inline ms-2">
-                            @Html.AntiForgeryToken()
-                            <input type="hidden" name="userId" value="@user.Id" />
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
+                        @if (!user.Roles.Contains("Admin"))
+                        {
+                            <form method="post" asp-action="DeleteUser" asp-controller="UserManagement" asp-area="Admin" class="d-inline ms-2">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="userId" value="@user.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        }
+                       
                     </td>
                 </tr>
             }

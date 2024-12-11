@@ -81,7 +81,7 @@
                         <input asp-for="@Model.Quantity" class="form-control w-25 d-inline-block" min="1" value="1">
 
 
-                        <form asp-controller="Product" asp-action="AddToCart" method="post" class="ms-auto">
+                        <form asp-controller="Order" asp-action="AddToCart" method="post" class="ms-auto">
                             @Html.AntiForgeryToken()
                             <input type="hidden" name="id" value="@Model.Id" />
                             <input type="hidden" name="quantity" value="@Model.Quantity" />

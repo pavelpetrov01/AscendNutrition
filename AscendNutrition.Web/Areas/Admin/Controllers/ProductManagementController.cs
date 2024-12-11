@@ -28,7 +28,7 @@ namespace AscendNutrition.Web.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             IEnumerable<IndexViewModel> model =
-                await _productService.IndexGetAllProductsAsync();
+                await _productService.AdminIndexGetAllProductsAsync();
             return View(model);
         }
 

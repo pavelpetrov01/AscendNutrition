@@ -1,4 +1,5 @@
-﻿using AscendNutrition.Data;
+﻿using System.Collections;
+using AscendNutrition.Data;
 using AscendNutrition.Data.Models;
 using AscendNutrition.Data.Models.Enums.Review;
 using AscendNutrition.Data.Repository.Interfaces;
@@ -56,11 +57,19 @@ namespace AscendNutrition.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(AllProductsSearchFilterViewModel model)
         {
-            IEnumerable<IndexViewModel> model =
-                await _productService.IndexGetAllProductsAsync();
-            return View(model);
+            IEnumerable<IndexViewModel> allProducts = await _productService.IndexGetAllProductsAsync(model);
+            int count = await _productService.GetProductCountAsync(model);
+            AllProductsSearchFilterViewModel viewModel = new AllProductsSearchFilterViewModel
+            {
+                AllCategories = await _productService.GetAllCategoriesAsync(),
+                AllProducts = allProducts,
+                TotalPages = (int)Math.Ceiling((double) count/ model.EntitiesPerPage!.Value),
+                CurrentPage = model.CurrentPage
+            };
+            return View(viewModel);
+
         }
 
         [HttpGet]
