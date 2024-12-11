@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Server Error";
+}
+
+<div class="container text-center mt-5">
+    <h1 class="display-1 text-danger">500</h1>
+    <h2 class="text-muted">Internal @ViewData["Title"]</h2>
+    <p class="mt-4">
+        Something went wrong on our end. Please try again later.
+    </p>
+    <a asp-action="Index" asp-area="Admin" asp-controller="Home" class="btn btn-primary mt-3">
+        <i class="fas fa-home"></i> Go Back to Home
+    </a>
+</div>

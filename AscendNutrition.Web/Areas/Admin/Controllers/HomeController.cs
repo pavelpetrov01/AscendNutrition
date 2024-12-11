@@ -1,18 +1,14 @@
-using System.Diagnostics;
-using AscendNutrition.Web.ViewModels;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
-namespace AscendNutrition.Web.Controllers
+using static AscendNutrition.Common.ApplicationConstants;
+namespace AscendNutrition.Web.Areas.Admin.Controllers
 {
+    [Area(AdminRoleName)]
+    [Authorize(Roles = AdminRoleName)]
     public class HomeController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
 
-        public IActionResult Privacy()
+        public IActionResult Index()
         {
             return View();
         }
