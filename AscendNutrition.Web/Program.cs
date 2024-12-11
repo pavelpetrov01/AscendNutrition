@@ -90,7 +90,7 @@ namespace AscendNutrition.Web
             });
             app.UseAuthorization();
 
-            app.SeedAdmin(adminEmail, adminUsername, adminPassword, adminAddress, adminCity, adminFirstName, adminLastName, adminPostalCode);
+            //app.SeedAdmin(adminEmail, adminUsername, adminPassword, adminAddress, adminCity, adminFirstName, adminLastName, adminPostalCode);
             app.MapControllerRoute(
                 name: "Areas",
                 pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
