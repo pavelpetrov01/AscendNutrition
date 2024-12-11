@@ -4,6 +4,7 @@ using AscendNutrition.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AscendNutrition.Data.Migrations
 {
     [DbContext(typeof(AscendNutritionDbContext))]
-    partial class AscendNutritionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241206200031_SoftDeletionAddedToAllEntities")]
+    partial class SoftDeletionAddedToAllEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -141,7 +144,7 @@ namespace AscendNutrition.Data.Migrations
 
                     b.HasIndex("ParentCategoryId");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
 
                     b.HasData(
                         new
@@ -217,7 +220,7 @@ namespace AscendNutrition.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Inventories", (string)null);
+                    b.ToTable("Inventories");
 
                     b.HasData(
                         new
@@ -275,7 +278,7 @@ namespace AscendNutrition.Data.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
 
                     b.HasData(
                         new
@@ -320,7 +323,7 @@ namespace AscendNutrition.Data.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItems", (string)null);
+                    b.ToTable("OrderItems");
 
                     b.HasData(
                         new
@@ -418,7 +421,7 @@ namespace AscendNutrition.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
 
                     b.HasData(
                         new
@@ -595,7 +598,7 @@ namespace AscendNutrition.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductInventories", (string)null);
+                    b.ToTable("ProductInventories");
 
                     b.HasData(
                         new
@@ -738,7 +741,7 @@ namespace AscendNutrition.Data.Migrations
 
                     b.HasIndex("PromotionId");
 
-                    b.ToTable("ProductPromotions", (string)null);
+                    b.ToTable("ProductPromotions");
 
                     b.HasData(
                         new
@@ -899,7 +902,7 @@ namespace AscendNutrition.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Promotions", (string)null);
+                    b.ToTable("Promotions");
 
                     b.HasData(
                         new
@@ -976,7 +979,7 @@ namespace AscendNutrition.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Reviews", (string)null);
+                    b.ToTable("Reviews");
 
                     b.HasData(
                         new
