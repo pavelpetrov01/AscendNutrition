@@ -74,17 +74,13 @@
             @if (User?.Identity?.IsAuthenticated == true)
             {
                 <div class="mt-4">
-                    <label asp-for="@Model.Quantity" class="form-label"><strong>Quantity:</strong></label>
-
 
                     <div class="d-flex align-items-center">
-                        <input asp-for="@Model.Quantity" class="form-control w-25 d-inline-block" min="1" value="1">
-
 
                         <form asp-controller="Order" asp-action="AddToCart" method="post" class="ms-auto">
                             @Html.AntiForgeryToken()
                             <input type="hidden" name="id" value="@Model.Id" />
-                            <input type="hidden" name="quantity" value="@Model.Quantity" />
+                            <input type="hidden" name="quantity" value="1"/>
                             <button type="submit" class="btn btn-success" style="width: 150px;">Buy</button>
                         </form>
                     </div>
@@ -111,7 +107,7 @@
         </div>
     </div>
 
-    @if (User?.Identity?.IsAuthenticated == true && Model.HasUserOrderedProduct == true && Model.HasUserReviewedProduct == false)
+    @if (User?.Identity?.IsAuthenticated == true @* && Model.HasUserOrderedProduct == true && Model.HasUserReviewedProduct == false *@)
     {
         <form asp-controller="Product" asp-action="AddReview" method="get">
             @Html.AntiForgeryToken()

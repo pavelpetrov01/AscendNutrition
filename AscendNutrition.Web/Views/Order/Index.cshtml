@@ -1,0 +1,70 @@
+﻿@model AscendNutrition.Web.ViewModels.Order.CartViewModel
+
+<div class="container">
+    <h1>Your Cart</h1>
+
+    @if (Model == null || !Model.CartItems.Any())
+    {
+        <p>Your cart is currently empty. Start adding products!</p>
+    }
+    else
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.CartItems)
+                {
+                    <tr>
+                        <td>
+                            <div class="product-image">
+                                @if (@item.ImageUrl != null)
+                                {
+                                    if (item.ImageUrl.Contains("http"))
+                                    {
+                                        <img src="@item.ImageUrl" alt="@item.Name" class="img-fluid" style="width: 100px; height: 100px; object-fit: cover;" />
+                                    }
+                                    else
+                                    {
+                                        <img src="@Url.Content("~/" + @item.ImageUrl)" alt="Product Image" class="img-fluid" style="width: 100px; height: 100px; object-fit: cover;" />
+                                    }
+                                }
+                                else
+                                {
+                                    <img src="@Url.Content("~/images/noimg.jpg")" alt="Product Image" class="img-fluid" style="width: 100px; height: 100px; object-fit: cover;" />
+                                }
+                            </div>
+                        </td>
+                        <td>
+                            <strong>@item.Name</strong>
+                        </td>
+                        <td>@item.Price.ToString("C")</td>
+                        <td>@item.Quantity</td>
+                        <td class="text-center">
+                            <form asp-controller="Order" asp-action="RemoveFromCart" method="post">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="productId" value="@item.ProductId" />
+                                <button type="submit" class="btn btn-danger">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="cart-footer d-flex justify-content-between mt-4">
+            <span><strong><u>Total:</u></strong> @Model.TotalSum.ToString("C")</span>
+            @if (!Model.IsEmpty)
+            {
+                <button class="btn btn-primary">Confirm order</button>
+            }
+        </div>
+    }
+</div>

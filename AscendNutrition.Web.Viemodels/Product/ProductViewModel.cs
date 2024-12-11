@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AscendNutrition.Web.ViewModels.AdminArea.InventoryManagement;
 using static AscendNutrition.Common.EntityValidationConstants.Product;
 using static AscendNutrition.Common.ModelValidationMessages.Product;
 using static AscendNutrition.Common.ModelValidationMessages.Category;
@@ -56,5 +57,8 @@ namespace AscendNutrition.Web.ViewModels.Product
         public List<KeyValuePair<int, string>> Suitabilities { get; set; } = new List<KeyValuePair<int, string>>();
 
         public ICollection<CategoryViewModel> Categories { get; set; } = new List<CategoryViewModel>();
+
+        public ICollection<AllProductsInInventoryViewModel> Inventories { get; set; } =
+            new List<AllProductsInInventoryViewModel>();
     }
 }
