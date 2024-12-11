@@ -1,0 +1,42 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model AscendNutrition.Web.ViewModels.AdminArea.CategoryManagement.AllCategoriesViewModel
+
+@{
+    ViewData["Title"] = "Add Subcategory";
+}
+
+<div class="container">
+    <h1 class="my-4"><u>@ViewData["Title"]</u></h1>
+
+    <h3>@Model.Name</h3>
+    <p>Mark the categories that should be marked as subcategories</p>
+
+    <form method="post" asp-action="ChangeSubcategories" asp-controller="CategoryManagement" class="mb-4">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <input type="hidden" name="Name" value="@Model.Name" />
+
+
+        <div class="form-group">
+            <h5>Available Categories:</h5>
+            @foreach (var subcategory in Model.SubCategories)
+            {
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="SelectedSubcategoryIds" value="@subcategory.Id" @(subcategory.IsBound ? "checked" : "") />
+                    <label class="form-check-label" for="subcategory_@subcategory.Id">
+                        @subcategory.Name
+                    </label>
+                </div>
+            }
+            @Html.ValidationMessageFor(model => model.SelectedSubcategoryIds, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group mt-3">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+    </form>
+
+    <div class="mt-3">
+        <a asp-action="Index" asp-controller="CategoryManagement" class="btn btn-secondary">Back to Categories</a>
+    </div>
+</div>

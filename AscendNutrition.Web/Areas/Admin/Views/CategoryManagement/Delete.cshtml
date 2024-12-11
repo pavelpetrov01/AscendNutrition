@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model AscendNutrition.Web.ViewModels.AdminArea.CategoryManagement.DeleteCategoryViewModel
+
+@{
+    ViewData["Title"] = "Delete Category";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Delete Category</h1>
+
+    <div class="alert alert-warning" role="alert">
+        <p>Are you sure you want to delete the category <strong>@Model.Name</strong>?</p>
+        <p>This action cannot be undone.</p>
+    </div>
+
+    <form asp-action="Delete" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="Id" />
+
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

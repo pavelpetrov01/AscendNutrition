@@ -1,0 +1,66 @@
+﻿@model IEnumerable<AscendNutrition.Web.ViewModels.AdminArea.CategoryManagement.AllProductsByCategoryViewModel>
+@{
+    ViewData["Title"] = "All products:";
+}
+
+<div class="container">
+    <h1><u>@ViewData["Title"]</u></h1>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="row">
+            @foreach (var product in Model)
+            {
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-dark">
+                        <div class="row g-0 h-100">
+                            <div class="col-4 d-flex align-items-center">
+                                @if (product.ImageUrl != null)
+                                {
+                                    if (product.ImageUrl.Contains("http"))
+                                    {
+                                        <img src="@product.ImageUrl" alt="@product.Name" class="img-fluid p-2" />
+                                    }
+                                    else
+                                    {
+                                        <img src="@Url.Content("~/" + product.ImageUrl)" alt="@product.Name" class="img-fluid p-2" />
+                                    }
+                                }
+                                else
+                                {
+                                    <img src="@Url.Content("~/images/noimg.jpg")" alt="No Image" class="img-fluid p-2" />
+                                }
+                            </div>
+                            <div class="col-8">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h5 class="card-title"><strong>@product.Name</strong></h5>
+                                        <p><strong>Price:</strong> @product.Price.ToString("C")</p>
+                                        <p><strong>Brand:</strong> @product.Brand</p>
+                                        <p><strong>Servings:</strong> @product.Servings</p>
+                                        @if (!String.IsNullOrEmpty(@product.Flavor))
+                                        {
+                                            <p><strong>Flavor:</strong> @product.Flavor</p>
+                                        }
+                                        <p><strong>Quantity:</strong> @product.Quantity</p>
+                                        @if (!String.IsNullOrEmpty(@product.Size))
+                                        {
+                                            <p><strong>Size:</strong> @product.Size</p>
+                                        }
+                                        <p><strong>Suitability:</strong> @product.Suitability</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    }
+    else
+    {
+        <p class="text-center"><strong>No products available at the moment. Please check later.</strong></p>
+    }
+</div>
